@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="./Fossprite%20logo.png" alt="Fossprite logo" width="112">
+  <img src="./Fossprite.png" alt="Fossprite wordmark" width="272">
+</p>
+
 # Fossprite
 
 Fossprite is a self-contained, single-file, offline pixel-art editor. The application source is [`index.html`](index.html). It runs directly in a modern browser without a server, CDN, npm runtime, or third-party network connection.
