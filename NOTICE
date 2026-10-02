@@ -1,0 +1,11 @@
+Fossprite distribution notice
+
+This distribution contains original Fossprite code and embedded third-party software. The root LICENSE applies only to original Fossprite code; third-party components remain under their respective licenses listed in THIRD-PARTY-NOTICES.md.
+
+Attributions retained in the application include:
+- DogSprite — systemcrash92 / SETO, MIT
+- Simple Pixel Art — comficker / SimplePixelArt.com, MIT
+
+The application also embeds vendor codec sources as Base64 in window.PF_VENDOR_SRC. Their provenance, bundled versions, license expressions, and evidence are documented in THIRD-PARTY-NOTICES.md.
+
+No separate upstream NOTICE file was identified in the source or package metadata reviewed for the Apache-2.0 component. This statement is an audit result, not a claim that no upstream notice can exist outside the reviewed materials.
