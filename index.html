@@ -7,10 +7,10 @@
 <meta name="description" content="Free offline pixel art editor in a single HTML file. Layers, frames, palettes, symmetry. Nothing leaves your browser.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23111111'/%3E%3Crect x='3' y='4' width='2' height='2' fill='%233b82f6'/%3E%3Crect x='11' y='4' width='2' height='2' fill='%233b82f6'/%3E%3Crect x='6' y='7' width='4' height='2' fill='%233b82f6'/%3E%3Crect x='4' y='10' width='8' height='2' fill='%233b82f6'/%3E%3C/svg%3E">
 <style>
-/* ============================================================
-   Fossprite design system
-   CSS variables, flat surfaces, 7 themes, no framework
-   ============================================================ */
+
+
+
+
 *,*::before,*::after{box-sizing:border-box;border:0 solid var(--border)}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 :focus{outline:none}
@@ -39,7 +39,7 @@ a{color:inherit;text-decoration:none}
   --font-mono:ui-monospace,"SF Mono","JetBrains Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
   --text-2xs:.6875rem;--text-xs:.8125rem;--text-sm:.875rem;--text-base:1rem;--text-lg:1.1875rem;--text-xl:1.3125rem;--text-2xl:1.625rem;
 }
-/* 7 themes */
+
 :root,[data-theme="dark"]{
   --background:#111111;--foreground:#e5e5e5;
   --border:color-mix(in oklab,#333333 50%,transparent);
@@ -110,7 +110,7 @@ h1,h2,h3,h4{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;c
 ::-webkit-scrollbar-thumb:hover{background:var(--muted)}
 *{scrollbar-width:thin;scrollbar-color:var(--surface-2) transparent}
 
-/* app layout */
+
 #app{height:100%;display:grid;grid-template-rows:var(--bar-h) 1fr var(--timeline-h) var(--status-h)}
 #app.no-timeline{grid-template-rows:var(--bar-h) 1fr 0 var(--status-h)}
 #mid{display:grid;grid-template-columns:auto 1fr auto;min-height:0}
@@ -121,11 +121,11 @@ h1,h2,h3,h4{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;c
 #cvMain,#cvOverlay{position:absolute;inset:0;width:100%;height:100%}
 #cvOverlay{touch-action:none}
 
-/* top bar */
+
 #topbar{display:flex;align-items:center;gap:var(--space-2);padding:0 var(--space-3);background:var(--surface);border-bottom:1px solid var(--border);height:var(--bar-h);z-index:60}
-.logo{display:flex;align-items:center;gap:8px;font-weight:800;font-size:var(--text-sm);letter-spacing:-.02em;white-space:nowrap;padding-right:var(--space-2)}
-.logo .lg-name{color:var(--foreground)}
-.logo .lg-sub{color:var(--muted);font-weight:600;font-size:var(--text-2xs);display:block;line-height:1.05;margin-top:1px}
+
+
+
 #docTabs{display:flex;align-items:flex-end;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;padding-top:8px}
 #docTabs::-webkit-scrollbar{display:none}
 .dtab{display:flex;align-items:center;gap:6px;max-width:180px;min-width:96px;padding:5px 8px 5px 10px;font-size:var(--text-xs);font-weight:600;color:var(--muted);
@@ -143,7 +143,7 @@ h1,h2,h3,h4{font-family:var(--font-body);font-weight:800;letter-spacing:-.02em;c
 .tb-actions{display:flex;align-items:center;gap:2px}
 .tb-sep{width:1px;height:22px;background:var(--border);margin:0 6px;flex:0 0 auto}
 
-/* buttons and inputs */
+
 .btn{display:inline-flex;align-items:center;gap:var(--space-1);padding:.5rem .75rem;font-size:var(--text-xs);border:1px solid var(--border);background:var(--surface);color:var(--foreground);font-weight:600;border-radius:var(--radius-sm);transition:color var(--transition),background var(--transition),border-color var(--transition);white-space:nowrap}
 .btn:hover{color:var(--primary);background:var(--surface-2)}
 .btn:active{transform:scale(.985)}
@@ -176,7 +176,7 @@ input[type=color]{width:34px;height:26px;padding:0;border:1px solid var(--border
 kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surface-2);border:1px solid var(--border);border-bottom-width:2px;border-radius:var(--radius-sm);padding:1px 5px;color:var(--secondary);white-space:nowrap}
 </style>
 <style>
-/* menus */
+
 .menu{position:relative}
 .menu>button{height:32px;padding:0 10px;border-radius:var(--radius-sm);font-size:var(--text-xs);font-weight:600;color:var(--secondary);display:inline-flex;align-items:center;gap:5px}
 .menu>button:hover,.menu.open>button{background:var(--surface-2);color:var(--foreground)}
@@ -190,7 +190,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 .dropdown hr{border:0;border-top:1px solid var(--border);margin:4px 6px}
 
 
-/* left rail */
+
 #rail{width:var(--rail-w);background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden}
 #toolGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:10px}
 .tool{display:flex;align-items:center;gap:7px;height:34px;padding:0 8px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--secondary);font-size:10px;font-weight:700;transition:all var(--transition)}
@@ -215,7 +215,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 .sizes button.active{border-color:var(--primary);background:var(--surface-2)}
 .sizes i{background:var(--foreground);border-radius:1px;display:block}
 
-/* right panels */
+
 #panels{width:var(--panel-w);background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;display:flex;flex-direction:column}
 .panel{border-bottom:1px solid var(--border)}
 .panel>.ph{display:flex;align-items:center;gap:6px;padding:9px 12px;cursor:pointer;position:sticky;top:0;background:var(--surface);z-index:5}
@@ -227,7 +227,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 .panel>.pb{padding:0 12px 12px}
 .panel.collapsed>.pb{display:none}
 
-/* color picker */
+
 #svBox{position:relative;height:132px;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:crosshair;touch-action:none}
 #svBox .sv{position:absolute;inset:0;border-radius:var(--radius-sm)}
 #svBox .huep{position:absolute;inset:0;background:linear-gradient(to top,#000,transparent);border-radius:var(--radius-sm)}
@@ -253,7 +253,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 .btnrow{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .btnrow .mini-btn{flex:1;justify-content:center;min-width:0}
 
-/* layers */
+
 #layerList{display:flex;flex-direction:column;gap:4px;max-height:240px;overflow-y:auto}
 .lrow{display:flex;align-items:center;gap:8px;min-height:64px;padding:8px;border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;background:var(--surface);transition:all var(--transition)}
 .lrow:hover{background:var(--surface-2)}
@@ -272,7 +272,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 #layerOps button:hover{color:var(--primary);background:var(--surface-2)}
 #layerOps button .ic{width:13px;height:13px}
 
-/* timeline */
+
 #timeline{background:var(--surface);border-top:1px solid var(--border);display:flex;flex-direction:column;min-height:0}
 #app.no-timeline #timeline{display:none}
 #tlHead{display:flex;align-items:center;gap:8px;padding:4px 12px;height:34px;border-bottom:1px solid var(--border)}
@@ -297,7 +297,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 .frameCard.dragging{opacity:.4}
 .frameCard.dragover{border-color:var(--primary);box-shadow:0 0 0 2px var(--primary)}
 
-/* status bar */
+
 #statusbar{display:flex;align-items:center;gap:14px;padding:0 12px;background:var(--surface);border-top:1px solid var(--border);font-size:var(--text-2xs);color:var(--muted);font-family:var(--font-mono);white-space:nowrap;overflow:hidden}
 #statusbar .st{display:flex;align-items:center;gap:4px;flex:0 0 auto}
 #statusbar .st b{color:var(--secondary);font-weight:600}
@@ -305,7 +305,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 #stSave{width:7px;height:7px;border-radius:50%;background:var(--success);flex:0 0 auto;transition:background .3s}
 #stSave.busy{background:var(--warning)}
 
-/* dialogs */
+
 .modal-veil{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-veil.open{display:flex}
 .modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-modal);width:100%;max-width:460px;max-height:88vh;display:flex;flex-direction:column;animation:pop .18s cubic-bezier(.16,1,.3,1)}
@@ -353,7 +353,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 .sc-row .sc-keys{min-width:88px;display:flex;gap:3px;flex-wrap:wrap}
 .sc-row span{color:var(--secondary)}
 
-/* toasts */
+
 #toasts{position:fixed;bottom:44px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:400;align-items:center;pointer-events:none}
 .toast{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:var(--radius);box-shadow:var(--shadow-modal);padding:9px 14px;font-size:var(--text-xs);font-weight:600;animation:pop .18s;pointer-events:auto;max-width:min(560px,90vw)}
 .toast.warn{border-left-color:var(--warning)}
@@ -361,7 +361,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 .toast.ok{border-left-color:var(--success)}
 .toast .t-act{margin-left:6px}
 
-/* floating preview */
+
 #floatPreview{position:absolute;right:14px;bottom:14px;width:148px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-modal);z-index:50;display:none;overflow:hidden}
 #floatPreview.open{display:block}
 #floatPreview .fph{display:flex;align-items:center;gap:6px;padding:5px 8px;font-size:var(--text-2xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);cursor:move;border-bottom:1px solid var(--border)}
@@ -377,7 +377,7 @@ kbd{font-family:var(--font-mono);font-size:var(--text-2xs);background:var(--surf
 .pop .mi.on{color:var(--primary)}
 .pop .mi .dot{width:12px;height:12px;border-radius:3px;border:1px solid var(--border);flex:0 0 auto}
 @media (max-width:960px){#rail{--rail-w:48px}.widget,#toolGrid .tsc{display:none}#toolGrid{grid-template-columns:1fr;padding:6px}.tool{justify-content:center;padding:0}.tool .tsc{display:none}#panels{--panel-w:200px}}
-@media (max-width:680px){#panels{display:none}.logo .lg-sub{display:none}}
+@media (max-width:680px){#panels{display:none}}
 </style>
 
 <style id="panel-scroll-and-layout-fix">
@@ -451,9 +451,6 @@ html,body{width:100%;max-width:100%;height:100%;overflow:hidden}
 
 <div id="app">
   <header id="topbar">
-    <div class="logo"><svg width="26" height="26"><use href="#i-logo"/></svg>
-      <div><span class="lg-name">Fossprite</span><span class="lg-sub" data-i18n="brand.subtitle">Pixel art studio</span></div>
-    </div>
     <nav id="menus" style="display:flex;gap:2px">
       <div class="menu" data-menu="file"><button data-i18n="menu.file">File</button>
         <div class="dropdown">
@@ -874,13 +871,13 @@ html,body{width:100%;max-width:100%;height:100%;overflow:hidden}
 
 <script>
 "use strict";
-/* Fossprite core: utils, i18n, state, history, storage */
+
 const PF = {};
 PF.VERSION = "1.1.0";
 
-/* Safety/performance limits: keep malformed or unusually large projects from exhausting the browser. */
 
-/* pixel helpers (Uint32 = 0xAABBGGRR, ImageData LE layout) */
+
+
 function rgba2u(r, g, b, a = 255) { return ((a << 24) | (b << 16) | (g << 8) | r) >>> 0; }
 function hex2u(hex, a = 255) {
   hex = hex.replace('#', '');
@@ -906,7 +903,7 @@ function el(id) { return document.getElementById(id); }
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 function fmtBytes(n) { return n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : n >= 1024 ? (n / 1024).toFixed(0) + ' KB' : n + ' B'; }
 
-/* i18n: EN / ID / ES / JA */
+
 const I18N = {
   en: {
     'menu.file': 'File', 'menu.edit': 'Edit', 'menu.view': 'View', 'menu.help': 'Help',
@@ -1265,8 +1262,8 @@ function applyI18n() {
   document.querySelectorAll('[data-i18n-ph]').forEach(n => { n.placeholder = t(n.dataset.i18nPh, n.placeholder); });
   document.querySelectorAll('[data-i18n-title]').forEach(n => { n.title = t(n.dataset.i18nTitle, n.title); });
   document.querySelectorAll('[data-i18n-tip]').forEach(n => { n.dataset.tip = t(n.dataset.i18nTip, n.dataset.tip); });
-  /* Icon-only controls must expose the same human-readable label to assistive
-     technology; visible tooltip text alone is not an accessible name. */
+
+
   document.querySelectorAll('button[data-tip],button[data-close]').forEach(n => {
     if (!n.getAttribute('aria-label')) {
       const label = n.dataset.tip || (n.hasAttribute('data-close') ? t('dlg.close','Close') : 'Control');
@@ -1276,7 +1273,7 @@ function applyI18n() {
   document.documentElement.lang = PF.lang;
 }
 
-/* palettes */
+
 const BUILTIN_PALETTES = {
   'PICO-8': ['#000000', '#1D2B53', '#7E2553', '#008751', '#AB5236', '#5F574F', '#C2C3C7', '#FFF1E8', '#FF004D', '#FFA300', '#FFEC27', '#00E436', '#29ADFF', '#83769C', '#FF77A8', '#FFCCAA'],
   'Sweetie 16': ['#1a1c2c', '#5d275d', '#b13e53', '#ef7d57', '#ffcd75', '#a7f070', '#38b764', '#257179', '#29366f', '#3b5dc9', '#41a6f6', '#73eff7', '#f4f4f4', '#94b0c2', '#566c86', '#333c57'],
@@ -1287,7 +1284,7 @@ const BUILTIN_PALETTES = {
 };
 function palFromHexes(arr) { return arr.map(h => hex2u(h)); }
 
-/* document model */
+
 function makeCel(w, h, fill) {
   const d = new Uint32Array(w * h);
   if (fill !== undefined) d.fill(fill);
@@ -1352,7 +1349,7 @@ function clampDoc(doc){
   doc.palette=doc.palette.slice(0,256).map(u=>u>>>0);
 }
 
-/* global app state */
+
 PF.docs = [];
 PF.activeDoc = -1;
 PF.tool = {
@@ -1366,7 +1363,7 @@ PF.color = { fg: hex2u('#3b82f6'), bg: hex2u('#ffffff'), hsv: { h: 217, s: .78, 
 PF.ui = { showGrid: true, onion: false, onionCount: 1, onionAlpha: .3, loop: true, playing: false, playingFrame: 0, playTimer: null, timelineOpen: true, previewOpen: false, showChecker: true };
 PF.clipboard = null;
 PF.cfg = {
-  // No product-imposed caps. Actual limits are determined by the browser/device.
+
   maxHistory: Number.MAX_SAFE_INTEGER,
   maxDocSize: Number.MAX_SAFE_INTEGER,
   maxDocs: Number.MAX_SAFE_INTEGER,
@@ -1378,7 +1375,7 @@ PF.cfg = {
 
 function activeDoc() { return PF.docs[PF.activeDoc] || null; }
 
-/* history */
+
 function pushHistory(entry, targetDoc = activeDoc()) {
   const doc = targetDoc; if (!doc) return;
   doc.history.undo.push(entry);
@@ -1396,7 +1393,7 @@ function makeCellEntry(label,li,fi,before){
   for(let i=0;i<len;i++){const a=before[i]>>>0,b=cel[i]>>>0;if(a!==b){changes.push([i,a,b]);if(a===0&&b!==0)addedArtwork=true;}}
   if(!changes.length)return null;
   if(addedArtwork) doc.hasArtwork=true;
-  /* locate the cel by reference at undo/redo time, so layer/frame reorder, add or delete never corrupts other cells */
+
   const locate=()=>{
     if(doc.layers.indexOf(layer)>=0){const k=layer.cels.indexOf(cel);if(k>=0)return layer.cels[k];}
     for(const L of doc.layers){const k=L.cels.indexOf(cel);if(k>=0)return L.cels[k];}
@@ -1428,7 +1425,7 @@ function groupHistory(label, fns, targetDoc = activeDoc()) {
   }, targetDoc);
 }
 
-/* persistence */
+
 function serializeProject() {
   return {
     app: 'fossprite', version: PF.VERSION,
@@ -1461,9 +1458,9 @@ function dataURLToCel(dataURL,w,h){
 }
 async function deserializeProject(json){
   if(!json||json.app!=='fossprite'||!Array.isArray(json.docs))throw new Error('bad');
-  /* Preflight before allocating any Uint32Array cells. A crafted JSON could otherwise
-     request tens of gigabytes of pixel storage even though each individual dimension
-     is inside the normal UI limits. */
+
+
+
   let totalCells=0;
   for(const jd of json.docs){
     const w=Math.max(1, Math.floor(Number(jd?.w)||64));
@@ -1499,74 +1496,74 @@ async function deserializeProject(json){
 }
 const AUTOSAVE_ENABLED_KEY='pf.autosave.enabled';
 
-/* ============================================================================
-   AUTOSAVE ENGINE — four triggers, one guarded decision system
-   --------------------------------------------------------------------------
-   The four triggers are deliberately NOT interchangeable:
 
-   1) QUICK SAVE — 5 seconds after the LAST COMMITTED DRAWING/ACTION CHANGE.
-      Characteristics / positive signals:
-      - a real document mutation just committed through markDirty();
-      - the change fingerprint is still the newest fingerprint;
-      - 5,000 ms have elapsed since that committed change;
-      - no newer mutation replaced that fingerprint;
-      - a brush/shape/move/tile operation is not still being committed;
-      - unrelated mouse movement does NOT cancel this timer;
-      - unrelated typing / wheel / scrolling does NOT cancel this timer;
-      - selecting a tool does not count as a drawing mutation unless markDirty runs;
-      - the timer is re-armed whenever a newer mutation is committed.
 
-   2) IDLE SAVE — 45 seconds with NO interaction inside the application.
-      Characteristics / positive signals:
-      - there are still dirty artwork documents;
-      - 45,000 ms have elapsed since the latest observed application activity;
-      - pointer movement, clicks, key presses, wheel, touch, scroll, drag, input,
-        change and focus activity reset the idle clock;
-      - moving the mouse over the app prevents the idle timer from winning;
-      - merely having an old dirty document does not make idle fire immediately;
-      - idle never relies on the quick timer's state or edit revision.
 
-   3) LEAVE SAVE — immediate save when the page becomes hidden / leaves focus /
-      is being paged away / frozen / unloaded.
-      Characteristics / positive signals:
-      - browser tab switch (visibilitychange -> hidden);
-      - window/app loses focus (blur);
-      - pagehide / bfcache transition;
-      - page freeze;
-      - beforeunload / browser-tab close / window close;
-      - unload as a final best-effort signal;
-      - this trigger has the highest priority over the timed triggers;
-      - the handler is synchronous on purpose because localStorage writes are synchronous.
 
-   4) FAILSAFE SAVE — no dirty artwork may remain in the normal autosave queue for
-      more than 180,000 ms from the FIRST currently-pending change.
-      Characteristics / positive signals:
-      - the first dirty timestamp is preserved while changes continue;
-      - continuous drawing / mouse movement / typing cannot postpone the deadline;
-      - quick and idle saves may happen earlier and cancel the failsafe only after
-        all eligible changes are actually persisted;
-      - an active drawing gesture does NOT block the failsafe;
-      - if persistence partially fails, recovery is retained and the failsafe timer
-        is converted into a retry of the same failsafe path instead of being silently
-        discarded.
 
-   THREE-LAYER+ SAFETY NET (applied before any autosave write):
-      Layer 1 — ELIGIBILITY GATE: autosave enabled + real pending artwork exists.
-      Layer 2 — TRIGGER FINGERPRINT: quick requires the same edit revision and due
-                timestamp; idle requires true 45s inactivity; failsafe requires its
-                original earliest-pending deadline; leave requires a real leave event.
-      Layer 3 — OPERATION GUARD: quick never snapshots a still-committing drawing
-                gesture; failsafe/leave may snapshot it because they are recovery paths.
-      Layer 4 — DUPLICATE/RE-ENTRY GUARD: a single synchronous save transaction is
-                allowed at once; stale callbacks are rejected by revision/token checks.
-      Layer 5 — RECOVERY FIRST: the compact recovery bundle is written before each
-                permanent-project/session update, so a partial later write still leaves
-                a recovery payload when browser storage accepts it.
-      Layer 6 — STATE RECONCILIATION: dirty timestamps are only cleared after BOTH
-                project and autosave-session persistence succeed.
-      Layer 7 — LEAVE LATCH: multiple leave signals (blur -> hidden -> pagehide ->
-                beforeunload) collapse into one logical save request.
-   ============================================================================ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const AUTOSAVE_QUICK_DELAY=5000;
 const AUTOSAVE_IDLE_DELAY=45000;
@@ -1626,7 +1623,7 @@ function hasPendingChanges(){ return getAutosavePendingDocs().length>0; }
 function nowMs(){ return Date.now(); }
 
 function autosaveOperationActive(){
-  /* These are content-changing operations that can still be committing data. */
+
   return !!(PF._stroke||PF._draft||PF._move||PF._tileStroke);
 }
 
@@ -1693,19 +1690,19 @@ function setAutosaveEnabled(on,silent=false){
 
 function toggleAutosave(){ return setAutosaveEnabled(!isAutosaveEnabled()); }
 
-/* ------------------------- trigger eligibility ------------------------- */
+
 function quickTriggerEligible(revision,dueAt,now=nowMs()){
   if(!isAutosaveEnabled()||!hasPendingChanges())return false;
-  if(revision!==_as.editRevision)return false;                  // Layer 2a: no stale edit fingerprint
-  if(now<dueAt)return false;                                    // Layer 2b: never fire early
-  if(now-_as.lastEditAt<AUTOSAVE_QUICK_DELAY)return false;      // Layer 2c: independent elapsed-time proof
-  if(autosaveOperationActive())return false;                    // Layer 3: wait for committed action
+  if(revision!==_as.editRevision)return false;
+  if(now<dueAt)return false;
+  if(now-_as.lastEditAt<AUTOSAVE_QUICK_DELAY)return false;
+  if(autosaveOperationActive())return false;
   return true;
 }
 
 function idleTriggerEligible(now=nowMs()){
   if(!isAutosaveEnabled()||!hasPendingChanges())return false;
-  return now-_as.lastActivityAt>=AUTOSAVE_IDLE_DELAY;            // Layer 2: genuine app inactivity proof
+  return now-_as.lastActivityAt>=AUTOSAVE_IDLE_DELAY;
 }
 
 function failsafeTriggerEligible(now=nowMs()){
@@ -1718,8 +1715,8 @@ function leaveTriggerEligible(){
   return isAutosaveEnabled()&&hasPendingChanges();
 }
 
-/* The selector is deliberately centralized so a callback cannot accidentally
-   execute as the wrong timer. Higher-priority recovery reasons always win. */
+
+
 function selectAutosaveReason(requested,now=nowMs()){
   const candidates=[];
   if(_as.leaveLatched&&leaveTriggerEligible())candidates.push('leave');
@@ -1732,7 +1729,7 @@ function selectAutosaveReason(requested,now=nowMs()){
   return candidates[0];
 }
 
-/* ------------------------- timer scheduling ----------------------------- */
+
 function armFailsafeTimer(now=nowMs()){
   if(!isAutosaveEnabled()||!hasPendingChanges())return;
   refreshAutosavePendingClock(now);
@@ -1745,8 +1742,8 @@ function armFailsafeTimer(now=nowMs()){
 
 function armIdleTimer(){
   if(!isAutosaveEnabled()||!hasPendingChanges())return;
-  /* Activity can be extremely high-frequency; do NOT clear/recreate this timer
-     on every pointermove. The callback verifies the actual lastActivityAt. */
+
+
   if(_as.idleTimer)return;
   _as.idleTimer=setTimeout(onIdleTimer,AUTOSAVE_IDLE_DELAY+50);
 }
@@ -1781,7 +1778,7 @@ function onQuickTimer(revision,dueAt){
   if(!isAutosaveEnabled()||!hasPendingChanges())return;
   const now=nowMs();
 
-  /* Stale callback protection: a newer mutation owns the quick timer now. */
+
   if(revision!==_as.editRevision||dueAt!==_as.quickDueAt)return;
 
   if(now<dueAt){
@@ -1789,8 +1786,8 @@ function onQuickTimer(revision,dueAt){
     return;
   }
 
-  /* The five-second deadline has arrived but the gesture may still be in-flight.
-     Wait only in short safety slices; do not restart a full 5-second countdown. */
+
+
   if(autosaveOperationActive()){
     _as.quickTimer=setTimeout(()=>onQuickTimer(revision,dueAt),AUTOSAVE_QUICK_RETRY);
     return;
@@ -1820,13 +1817,13 @@ function onFailsafeTimer(){
     _as.failsafeTimer=setTimeout(onFailsafeTimer,Math.max(25,_as.failsafeDueAt-now));
     return;
   }
-  /* Failsafe intentionally has no operation guard: recovery priority outranks
-     gesture completion because this path exists to cap data-loss time. */
+
+
   requestAutosave('failsafe');
 }
 
-/* Any application activity resets ONLY the idle condition. It does not reset
-   quick-save elapsed time and it never resets the failsafe's first-dirty clock. */
+
+
 function noteActivity(){
   _as.lastActivityAt=nowMs();
   if(isAutosaveEnabled()&&hasPendingChanges())armIdleTimer();
@@ -1839,12 +1836,12 @@ function markDirty(doc){
   const wasDirty=d.dirty===true;
   d.dirty=true;
 
-  /* A new dirty period gets a fresh failsafe origin. Repeated markDirty calls
-     during the same logical pending period do not postpone the 3-minute cap. */
+
+
   ensureDocAutosaveTracking(d,now);
 
-  /* Every committed mutation advances the quick-save fingerprint. This is what
-     prevents an old timer callback from saving the wrong generation. */
+
+
   _as.editRevision++;
   _as.lastEditAt=now;
   if(!wasDirty)_as.retryDelay=AUTOSAVE_FAILSAFE_RETRY;
@@ -1865,7 +1862,7 @@ function markDocSaved(doc){
   if(!hasPendingChanges())clearAllAutosaveTimers();
 }
 
-/* ---------------------------- save transaction ------------------------- */
+
 function autosaveRecoveryBundle(docs){
   const scoped=(Array.isArray(docs)?docs:[]).filter(d=>d&&d.hasArtwork&&d.dirty);
   return {
@@ -1905,14 +1902,14 @@ function upsertAutosaveSnapshot(doc,data){
 
 function autosaveNow(reason='manual'){
   if(!isAutosaveEnabled())return false;
-  if(_as.saving)return false; /* Layer 4: synchronous re-entry guard */
+  if(_as.saving)return false;
 
   const now=nowMs();
   refreshAutosavePendingClock(now);
   const requested=String(reason||'manual');
 
-  /* Leave/failsafe can be invoked directly by lifecycle events; timed paths
-     must still prove their own eligibility before they may save. */
+
+
   if(requested!=='manual'&&!selectAutosaveReason(requested,now))return false;
 
   const eligible=getAutosavePendingDocs();
@@ -1930,17 +1927,17 @@ function autosaveNow(reason='manual'){
   try{
     if(dot)dot.classList.add('busy');
 
-    /* Layer 5: recovery bundle FIRST. The bundle captures all dirty artwork,
-       including documents other than the currently active one. */
+
+
     const bundle=autosaveRecoveryBundle(eligible);
     const recoveryPayload=JSON.stringify({time:now,data:bundle,reason:requested});
     recoveryWritten=storageSet('pf.autosave',recoveryPayload);
     if(!recoveryWritten)throw new Error('recovery-storage');
 
     for(const doc of eligible){
-      /* Serialize a stable current snapshot. Failsafe/leave are allowed to
-         capture an active gesture by design; quick/idle never get here while
-         a content gesture is still committing. */
+
+
+
       const data=JSON.stringify(serializeProjectSingle(doc));
       const projectSaved=upsertAutosavedProject(doc,data);
       const sessionSaved=projectSaved?upsertAutosaveSnapshot(doc,data):false;
@@ -1956,8 +1953,8 @@ function autosaveNow(reason='manual'){
     _as.lastSaveResult=allSaved;
     if(allSaved){
       _as.leaveLatched=false;
-      /* The permanent project/snapshot writes are now authoritative. Keeping the
-         same recovery payload would cause a false recovery prompt on every reload. */
+
+
       clearAutosaveRecovery();
     }
 
@@ -1968,8 +1965,8 @@ function autosaveNow(reason='manual'){
     return allSaved;
   }catch(e){
     _as.lastSaveResult=false;
-    /* Recovery may still be absent if browser storage rejected it. The dirty
-       markers remain intact so a later retry can prove the write succeeded. */
+
+
     toast(t('toast.storageFull'),'warn');
     return false;
   }finally{
@@ -1978,8 +1975,8 @@ function autosaveNow(reason='manual'){
       setTimeout(()=>dot.classList.remove('busy'),400);
     }
 
-    /* Layer 6: never blindly clear the failsafe clock. Reconcile against the
-       actual dirty state after every transaction, including partial failure. */
+
+
     const pending=getAutosavePendingDocs();
     if(!pending.length){
       refreshAutosavePendingClock();
@@ -1990,13 +1987,13 @@ function autosaveNow(reason='manual'){
     }else{
       const n=nowMs();
       refreshAutosavePendingClock(n);
-      /* A failed persistence path is still protected by the original failsafe
-         deadline; retry it rather than silently abandoning the safety net. */
+
+
       armIdleTimer();
       if(_as.lastSaveResult===false){
-        /* Reuse the failsafe timer as a bounded persistence retry. The original
-           firstPendingAt is preserved; this is still one failsafe mechanism, not
-           a fifth autosave timer. Backoff prevents a storage-error busy loop. */
+
+
+
         clearAutosaveTimer('failsafeTimer');
         const delay=Math.min(30000,Math.max(AUTOSAVE_FAILSAFE_RETRY,_as.retryDelay||AUTOSAVE_FAILSAFE_RETRY));
         _as.retryDelay=Math.min(30000,delay*2);
@@ -2020,7 +2017,7 @@ function autosaveOnLeave(signal='lifecycle'){
   if(!isAutosaveEnabled()||!hasPendingChanges())return true;
   _as.leaveLatched=true;
   _as.lastLeaveSignalAt=nowMs();
-  /* Highest-priority trigger; this deliberately ignores quick/idle deadlines. */
+
   return requestAutosave('leave');
 }
 
@@ -2055,7 +2052,7 @@ function setSnapshots(list,projectId=activeDoc()?.projectId){
 </script>
 <script>
 "use strict";
-/* Fossprite renderer: compositor, view, overlays */
+
 const cvMain = el('cvMain'), cvOverlay = el('cvOverlay');
 const ctxMain = cvMain.getContext('2d'), ctxOverlay = cvOverlay.getContext('2d');
 let VW = 0, VH = 0, DPR = 1;
@@ -2084,7 +2081,7 @@ function resizeCanvases() {
   requestRender();
 }
 
-/* view transforms */
+
 function docView(doc) { return doc.view; }
 function cellFromEvent(e) {
   const doc = activeDoc(); if (!doc) return null;
@@ -2128,7 +2125,7 @@ function updateZoomLabel() {
   el('stZoom').textContent = Math.round(doc.view.zoom * 100) + '%';
 }
 
-/* compositor */
+
 function compositeFrame(doc, fi, out, skipLayerIdx = -1) {
   out.fill(0);
   for (let li = 0; li < doc.layers.length; li++) {
@@ -2179,7 +2176,7 @@ function frameToCanvas(doc, fi, out32) {
   return compCanvas;
 }
 
-/* render loop */
+
 let _renderQueued = false;
 let _animLoopQueued=false;
 function scheduleTick(){
@@ -2353,7 +2350,7 @@ function drawBrushPreview(doc, v) {
   }
 }
 
-/* ants animation loop */
+
 let _lastT = 0;
 function tick(tms) {
   _animLoopQueued=false;
@@ -2377,7 +2374,7 @@ function tick(tms) {
 function advancePlayback() {
   const doc = activeDoc(); if (!doc) return;
   const frames = framesOf(doc);
-  if (PF.ui.playingFrame >= frames || PF.ui.playingFrame < 0) PF.ui.playingFrame = 0; /* frames may have changed while playing */
+  if (PF.ui.playingFrame >= frames || PF.ui.playingFrame < 0) PF.ui.playingFrame = 0;
   let acc = PF._playAcc || 0;
   while (acc >= doc.durations[PF.ui.playingFrame]) {
     acc -= doc.durations[PF.ui.playingFrame];
@@ -2407,7 +2404,7 @@ function stopPlayback() {
 }
 function togglePlay() { PF.ui.playing ? stopPlayback() : startPlayback(); }
 
-/* floating preview */
+
 let _fpAcc = 0, _fpFrame = 0;
 (function bindFloatPreviewDrag() {
   const fp = el('floatPreview'), ph = fp.querySelector('.fph');
@@ -2440,7 +2437,7 @@ function drawFloatPreview(dt=0){
   const out=el('fpCanvas');if(out.width!==doc.w||out.height!==doc.h){out.width=doc.w;out.height=doc.h;}const o=out.getContext('2d');o.imageSmoothingEnabled=false;o.clearRect(0,0,out.width,out.height);o.drawImage(p.c,0,0);
 }
 
-/* thumbnails */
+
 const thumbCache = new Map();
 function renderThumbTo(canvas, doc, fi) {
   const maxSide = Math.max(doc.w, doc.h);
@@ -2486,7 +2483,7 @@ function setHint(key) { el('stHint').textContent = key ? t(key) : ''; }
 </script>
 <script>
 "use strict";
-/* Fossprite drawing engine: strokes, algorithms, shapes, symmetry, pressure, flood fill, selections */
+
 function effBrushSize(pressure) {
   const T = PF.tool;
   if ((T.pressureMode === 'size' || T.pressureMode === 'sizeOpacity') && pressure > 0) {
@@ -2507,7 +2504,7 @@ function symPoints(x, y, doc) {
   if (mode === 'none') return [[x, y]];
   const ax = PF.tool.symX ?? doc.w / 2, ay = PF.tool.symY ?? doc.h / 2;
   const pts = [[x, y]];
-  /* mirror across pixel-boundary axis: pixel centers (x+0.5) reflect to 2a-(x+0.5) */
+
   const mx = Math.floor(2 * ax - x - 0.5), my = Math.floor(2 * ay - y - 0.5);
   if (mode === 'horizontal' || mode === 'both') pts.push([mx, y]);
   if (mode === 'vertical' || mode === 'both') pts.push([x, my]);
@@ -2600,7 +2597,7 @@ function ellipseRegion(x0, y0, x1, y1, filled) {
   return out;
 }
 
-/* stroke lifecycle */
+
 PF._stroke = null;
 function beginStroke(doc, cell, pressure) {
   const T = PF.tool;
@@ -2694,9 +2691,9 @@ function moveStroke(doc, cell, pressure, shift) {
 }
 function endStroke(doc) {
   const s = PF._stroke; if (!s) return;
-  /* Final segment: close the gap between the last processed pointermove and the
-     pointerup position. Keep PF._stroke alive here so strokePaintColor() applies
-     the same pressure/shading-ink rules as the rest of the stroke. */
+
+
+
   if (PF._hover && s.mode === 'stamp' && s.last && (s.last[0] !== PF._hover.x || s.last[1] !== PF._hover.y)) {
     const c = doc.layers[s.li].cels[s.fi];
     for (const q of lineCells(s.last[0], s.last[1], PF._hover.x, PF._hover.y)) stampBrush(c, doc.w, doc.h, q[0], q[1], strokePaintColor(), s.painted, s.size, PF.tool.brushShape);
@@ -2708,7 +2705,7 @@ function endStroke(doc) {
   requestRender();
 }
 
-/* flood fill */
+
 function floodFill(doc, x, y) {
   const li = doc.activeLayer, fi = doc.activeFrame;
   const cel = doc.layers[li].cels[fi];
@@ -2744,7 +2741,7 @@ function floodFill(doc, x, y) {
   buildLayerThumbs();
   requestRender();
 }
-/* eyedropper */
+
 function pickColor(doc, x, y) {
   if (x < 0 || y < 0 || x >= doc.w || y >= doc.h) return;
   const buf = PF._pickBuf && PF._pickBuf.length === doc.w * doc.h ? PF._pickBuf : (PF._pickBuf = new Uint32Array(doc.w * doc.h));
@@ -2754,7 +2751,7 @@ function pickColor(doc, x, y) {
   setForegroundColor(c & 0xFFFFFF | 0xFF000000);
 }
 
-/* shapes draft */
+
 function beginDraft(doc, cell, shift) { PF._draft = { start: [cell.x, cell.y], points: [], tool: PF.tool.active, filled: PF.tool.shapeFilled, shift }; updateDraft(doc, cell, shift); }
 function updateDraft(doc, cell, shift) {
   const d = PF._draft; if (!d) return;
@@ -2802,7 +2799,7 @@ function commitDraft(doc) {
   requestRender();
 }
 
-/* selection ops */
+
 function normalizeSel(s) {
   const doc = activeDoc(); if (!doc) return null;
   const x = clamp(Math.min(s.x0, s.x1), 0, doc.w), y = clamp(Math.min(s.y0, s.y1), 0, doc.h);
@@ -2859,7 +2856,7 @@ function pasteClip() {
   const dy = clamp(PF.clipboard.dy ?? Math.floor((doc.h - PF.clipboard.h) / 2), -PF.clipboard.h + 1, doc.h - 1);
   stampRegion(doc, PF.clipboard, dx, dy);
   pushCellEntry('paste', li, fi, before);
-  /* selection wraps the actually visible pasted pixels */
+
   const vx = Math.max(0, dx), vy = Math.max(0, dy);
   const ex = Math.min(doc.w, dx + PF.clipboard.w), ey = Math.min(doc.h, dy + PF.clipboard.h);
   doc.sel = (ex > vx && ey > vy) ? { x: vx, y: vy, w: ex - vx, h: ey - vy } : null;
@@ -2894,7 +2891,7 @@ function flipLayer(horizontal) {
   buildLayerThumbs();
   requestRender();
 }
-/* move tool drag */
+
 PF._move = null;
 function beginMove(doc,cell){
   const li=doc.activeLayer,fi=doc.activeFrame,cel=doc.layers[li].cels[fi],before=cel.slice();
@@ -2927,7 +2924,7 @@ function moveMove(doc,cell){
 }
 function endMove(doc) {
   const m = PF._move; if (!m) return;
-  applyMove(doc); /* apply final position even if pointerup arrived without a last pointermove */
+  applyMove(doc);
   PF._move = null;
   pushCellEntry('move', m.li, m.fi, m.before);
   buildFrameThumb(doc.activeFrame);
@@ -2935,14 +2932,14 @@ function endMove(doc) {
   requestRender();
 }
 
-/* pointer input on canvas */
+
 PF._hover = null;
 let spaceHeld = false;
 function toolForEvent(e) {
   if (e.altKey && (PF.tool.active === 'brush' || PF.tool.active === 'eraser' || PF.tool.active === 'line' || PF.tool.active === 'rect' || PF.tool.active === 'ellipse' || PF.tool.active === 'fill')) return 'picker';
   return PF.tool.active;
 }
-/* finish any in-progress pointer operation (used before switching/closing docs) */
+
 function finishActiveOps() {
   const d = activeDoc();
   if (!d) { PF._stroke = PF._draft = PF._move = PF._selDraft = PF._pan = PF._symDrag = null; return; }
@@ -2953,8 +2950,8 @@ function finishActiveOps() {
 }
 cvOverlay.addEventListener('pointerdown', e => {
   const doc = activeDoc(); if (!doc) return;
-  if (PF._stroke || PF._draft || PF._selDraft || PF._move || PF._pan) return; /* one operation at a time (multi-touch safety) */
-  if (e.pointerType === 'mouse' && e.button > 1) return; /* klik kanan tidak menggambar */
+  if (PF._stroke || PF._draft || PF._selDraft || PF._move || PF._pan) return;
+  if (e.pointerType === 'mouse' && e.button > 1) return;
   cvOverlay.setPointerCapture(e.pointerId);
   const cell = cellFromEvent(e);
   if (!cell) return;
@@ -2969,7 +2966,7 @@ cvOverlay.addEventListener('pointerdown', e => {
   const ax = PF.tool.symX ?? doc.w / 2, ay = PF.tool.symY ?? doc.h / 2;
   const mode = PF.tool.symmetryMode;
   const sxp = v.ox + ax * v.zoom, syp = v.oy + ay * v.zoom;
-  /* axis drag only from the handle dots, so painting near the guide lines still works */
+
   if ((mode === 'horizontal' || mode === 'both') && Math.hypot(e.offsetX - sxp, e.offsetY - (v.oy + 8)) <= 9) {
     PF._symDrag = 'x'; e.preventDefault(); return;
   }
@@ -2977,7 +2974,7 @@ cvOverlay.addEventListener('pointerdown', e => {
     PF._symDrag = 'y'; e.preventDefault(); return;
   }
   const tool = toolForEvent(e);
-  if (PF.ui.playing && tool !== 'pan') return; /* no edits while the animation plays */
+  if (PF.ui.playing && tool !== 'pan') return;
   if (!['picker', 'pan'].includes(tool) && !doc.layers[doc.activeLayer].visible) { toast(t('toast.hiddenLayer'), 'warn'); return; }
   switch (tool) {
     case 'picker': pickColor(doc, cell.x, cell.y); break;
@@ -3049,7 +3046,7 @@ cvOverlay.addEventListener('wheel', e => {
     z = clamp(z, 0.0625, 64);
     if (z >= 1) {
       z = Math.round(z);
-      /* rounding must never swallow the step: at integer zooms 1.18x rounds back to the same value */
+
       if (z === v.zoom) z = clamp(z + (factor > 1 ? 1 : -1), 1, 64);
     }
     setZoom(z, cx, cy);
@@ -3061,7 +3058,7 @@ window.addEventListener('keydown', e => { if (e.code === 'Space' && !e.target.ma
 window.addEventListener('keyup', e => { if (e.code === 'Space') { spaceHeld = false; el('viewportWrap').style.cursor = PF.tool.active === 'pan' ? 'grab' : 'crosshair'; } });
 window.addEventListener('blur', () => { spaceHeld = false; el('viewportWrap').style.cursor = PF.tool.active === 'pan' ? 'grab' : 'crosshair'; });
 
-/* drag and drop import */
+
 const wrap = el('viewportWrap');
 wrap.addEventListener('dragover', e => { e.preventDefault(); wrap.style.outline = '2px dashed var(--primary)'; });
 wrap.addEventListener('dragleave', () => { wrap.style.outline = 'none'; });
@@ -3075,7 +3072,7 @@ wrap.addEventListener('drop', e => {
 </script>
 <script>
 "use strict";
-/* Fossprite UI: tools panel, color/palette, layers, timeline, tabs, menus, dialogs */
+
 const TOOLS = [
   { id: 'brush', icon: 'brush', sc: 'B' }, { id: 'eraser', icon: 'eraser', sc: 'E' },
   { id: 'fill', icon: 'fill', sc: 'G' }, { id: 'picker', icon: 'picker', sc: 'I' },
@@ -3090,7 +3087,7 @@ function buildToolGrid() {
     b.className = 'tool' + (PF.tool.active === tool.id ? ' active' : '');
     b.dataset.tool = tool.id;
     b.innerHTML = `<svg class="ic"><use href="#i-${tool.icon}"/></svg><span>${t('tool.' + tool.id)}</span><span class="tsc">${tool.sc}</span>`;
-    b.addEventListener('click', () => { setTool(tool.id); b.blur(); /* keep keyboard shortcuts working after clicking a tool */ });
+    b.addEventListener('click', () => { setTool(tool.id); b.blur();   });
     g.appendChild(b);
   }
 }
@@ -3111,7 +3108,7 @@ function setTool(id) {
   else el('viewportWrap').style.cursor = 'crosshair';
 }
 
-/* tool options widgets */
+
 function bindToolOptions() {
   const bs = el('brushSize');
   bs.addEventListener('input', () => { PF.tool.brushSize = +bs.value; el('brushSizeVal').textContent = bs.value; markQuick(); });
@@ -3162,7 +3159,7 @@ function bindSeg(id, onSet, getV) {
 }
 function syncSeg(seg, v) { seg.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.v === v)); }
 
-/* HSV color picker */
+
 function hsv2rgb(h, s, v) {
   const i = Math.floor(h / 60) % 6, f = h / 60 - Math.floor(h / 60);
   const p = v * (1 - s), q = v * (1 - f * s), tt = v * (1 - (1 - f) * s);
@@ -3242,7 +3239,7 @@ function setForegroundColor(u, fromPicker) {
 }
 function swapColors() { const tmp = PF.color.fg; PF.color.fg = PF.color.bg; PF.color.bg = tmp; setForegroundColor(PF.color.fg); }
 
-/* palette panel */
+
 function buildPaletteSelect(){
   const sel=el('paletteSelect'),current=sel.value;sel.innerHTML='';
   for(const name of Object.keys(BUILTIN_PALETTES)){const o=document.createElement('option');o.value=name;o.textContent=name;sel.appendChild(o);}
@@ -3272,7 +3269,7 @@ function buildPaletteGrid(){
     d.addEventListener('contextmenu',e=>{e.preventDefault();PF.color.bg=u;toast(t('toast.bgSet')+' '+u2hex(u));});g.appendChild(d);});
   syncPaletteSelect(doc);
 }
-/* keep the palette dropdown honest: reflect the doc's actual palette */
+
 function syncPaletteSelect(doc){
   const sel=el('paletteSelect');if(!sel||!sel.options.length)return;
   for(const name of Object.keys(BUILTIN_PALETTES)){
@@ -3316,7 +3313,7 @@ function paletteFromArt(){
   buildPaletteGrid();toast(t('toast.palExtracted'),'ok');markDirty(doc);
 }
 
-/* layers panel */
+
 function buildLayerListUI(){
   const doc=activeDoc();if(!doc)return;const list=el('layerList');list.innerHTML='';
   for(let i=doc.layers.length-1;i>=0;i--){const l=doc.layers[i],row=document.createElement('div');row.className='lrow'+(i===doc.activeLayer?' active':'');row.dataset.li=i;
@@ -3325,7 +3322,7 @@ function buildLayerListUI(){
     row.addEventListener('click',e=>{if(e.target.closest('.leye'))return;doc.activeLayer=i;buildLayerListUI();updateStatus();requestRender();});
     row.querySelector('.leye').addEventListener('click',e=>{
       e.stopPropagation();
-      /* Route the toggle through history so Ctrl+Z restores visibility too. */
+
       const before=l.visible,after=!before;
       l.visible=after;
       groupHistory('layer visibility',[{undo(){l.visible=before;},redo(){l.visible=after;}}]);
@@ -3388,7 +3385,7 @@ document.querySelectorAll('.panel > .ph').forEach(ph => {
   ph.addEventListener('click', () => ph.parentElement.classList.toggle('collapsed'));
 });
 
-/* document tabs */
+
 function buildTabs() {
   const tabs = el('docTabs'); tabs.innerHTML = '';
   PF.docs.forEach((doc, i) => {
@@ -3402,7 +3399,7 @@ function buildTabs() {
     b.querySelector('.dt-x').addEventListener('click', () => closeDoc(i));
     b.addEventListener('dblclick', e => {
       if (e.target.closest('.dt-x')) return;
-      /* inline rename; window.prompt is blocked inside sandboxed previews */
+
       const nameEl = b.querySelector('.dt-name');
       const inp = document.createElement('input');
       inp.type = 'text'; inp.value = doc.name; 
@@ -3432,9 +3429,9 @@ function updateTabUI() { buildTabs(); if(typeof updateProjectMenuState==='functi
 function switchDoc(i){if(i===PF.activeDoc||!PF.docs[i])return;finishActiveOps();stopPlayback();PF.activeDoc=i;const d=activeDoc();if(d)initDocView(d);renderAll();buildPaletteGrid();buildLayerListUI();buildTimelineUI();setForegroundColor(PF.color.fg);syncSeg(el('symSeg'),PF.tool.symmetryMode);el('symAxesRow').hidden=PF.tool.symmetryMode==='none';if(typeof updateProjectMenuState==='function')updateProjectMenuState();}
 function closeDoc(i){
   const doc=PF.docs[i];if(!doc||PF.docs.length===1){toast(t('toast.closeLast'),'warn');return;}
-  /* A pointer gesture can mutate the active cel without setting dirty until the
-     gesture commits. Finalize it before reading doc.dirty, otherwise closing the
-     tab can discard the just-finished stroke without a confirmation. */
+
+
+
   if(i===PF.activeDoc)finishActiveOps();
   if(doc.dirty)confirmDlg(t('cf.closeDoc'),t('cf.closeDocMsg')).then(ok=>{if(ok)doClose(i)});else doClose(i);
   function doClose(idx){finishActiveOps();stopPlayback();const was=PF.activeDoc===idx;PF.docs.splice(idx,1);if(PF.activeDoc>idx)PF.activeDoc--;else if(was)PF.activeDoc=Math.min(idx,PF.docs.length-1);renderAll();buildPaletteGrid();buildLayerListUI();buildTimelineUI();scheduleAutosave();}
@@ -3448,7 +3445,7 @@ function addDoc(doc){
   return true;
 }
 
-/* timeline UI */
+
 function buildTimelineUI() {
   const doc = activeDoc(); if (!doc) return;
   el('app').classList.toggle('no-timeline', !PF.ui.timelineOpen);
@@ -3589,7 +3586,7 @@ function bindTimeline(){
   el('fpsInput').addEventListener('change',e=>applyFpsToDoc(e.target.value));
 }
 
-/* menus / dispatcher */
+
 function closeAllMenus() { document.querySelectorAll('.menu.open,.pop.open').forEach(m => m.classList.remove('open')); }
 document.querySelectorAll('#menus .menu > button').forEach(b => {
   b.addEventListener('click', e => {
@@ -3645,7 +3642,7 @@ function buildLangPop() {
   p.classList.add('open');
 }
 
-/* dialogs infra */
+
 function openDlg(id) { el(id).classList.add('open'); const f = el(id).querySelector('input,select,button.btn'); if (f) setTimeout(() => f.focus(), 60); }
 function closeDlg(id) { el(id).classList.remove('open'); }
 document.querySelectorAll('.modal-veil').forEach(v => {
@@ -3670,7 +3667,7 @@ function confirmDlg(title,msg){
 }
 el('cfOk').addEventListener('click', () => { closeDlg('dlgConfirm'); if (_cfResolve) { _cfResolve(true); _cfResolve = null; } });
 
-/* toasts */
+
 function toast(msg, type = 'ok', action) {
   const box = el('toasts');
   const d = document.createElement('div');
@@ -3687,7 +3684,7 @@ function toast(msg, type = 'ok', action) {
   while (box.children.length > 4) box.firstChild.remove();
 }
 
-/* dispatcher */
+
 PF.dispatch = function (act) {
   const doc = activeDoc();
   switch (act) {
@@ -3757,7 +3754,7 @@ document.addEventListener('click', e => {
   }
 });
 
-/* layer ops */
+
 function layerAdd() {
   const doc = activeDoc(); if (!doc) return;
   if(doc.layers.length>=PF.cfg.maxLayers){toast(t('toast.limitLayers'),'warn');return;}
@@ -3868,9 +3865,9 @@ function layerDel() {
 </script>
 <script>
 "use strict";
-/* Fossprite IO: export PNG/GIF/spritesheet/SVG/project, import & convert, templates, sessions, shortcuts */
 
-/* median cut quantization */
+
+
 function medianCut(pixels, maxColors) {
   if (pixels.length === 0) return [];
   let boxes = [pixels];
@@ -3918,7 +3915,7 @@ function despeckle(cel, w, h) {
   return out;
 }
 
-/* GIF encoder */
+
 function lzwEncode(minCodeSize, pixels, push) {
   const clearCode = 1 << minCodeSize, eoiCode = clearCode + 1;
   let codeSize = minCodeSize + 1, nextCode = eoiCode + 1;
@@ -3967,7 +3964,7 @@ function lzwEncodeBlocked(minCodeSize, pixels) {
 }
 function downloadBlob(blob,name){if(!(blob instanceof Blob)||!blob.size){toast(t('toast.badFile'),'error');return false;}const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},800);return true;}
 
-/* export dialog */
+
 let _exFmt = 'png', _exScale = 1;
 function openExport(){
   const doc=activeDoc();if(!doc)return;_exFmt='png';_exScale=1;el('exName').value=doc.name;
@@ -4067,7 +4064,7 @@ function buildGIF(frames, w, h) {
   const str = s => { for (let i = 0; i < s.length; i++) out.push(s.charCodeAt(i)); };
   str('GIF89a');
   push(w & 255, (w >> 8) & 255, h & 255, (h >> 8) & 255);
-  push(0x80 | (palField << 4) | palField, transIdx & 255, 0); /* bg index = transparency index, so disposal-2 restores to transparent */
+  push(0x80 | (palField << 4) | palField, transIdx & 255, 0);
   for (let i = 0; i < (1 << bits); i++) {
     if (i < pal.length) push(pal[i][0], pal[i][1], pal[i][2]); else push(0, 0, 0);
   }
@@ -4150,7 +4147,7 @@ function serializeProjectSingle(doc) {
   };
 }
 
-/* import / convert */
+
 let _cvImage = null, _cvPx = null;
 function openImageForImport(file) {
   if (!file || (!/^image\//i.test(file.type || '') && !/\.(png|jpe?g|gif|webp|bmp)$/i.test(file.name || ''))) { toast(t('toast.badFile'), 'error'); return; }
@@ -4163,15 +4160,15 @@ function openImageForImport(file) {
     cleanup();
     _cvImage=img;
     _cvPx=null;
-    /* Native PNG decode keeps straight alpha exact; canvas reads premultiply
-       and would corrupt the RGB of semi-transparent source pixels. */
+
+
     try{
       if(window.PF_PNG&&(/\.png$/i.test(file.name||'')||file.type==='image/png')){
         const native=await window.PF_PNG.decode(new Uint8Array(await file.arrayBuffer()));
         if(native&&native.w===img.naturalWidth&&native.h===img.naturalHeight)_cvPx=native;
         if(_cvImage!==img)return;
       }
-    }catch(e){/* canvas fallback stays available */}
+    }catch(e){ }
     const doc=activeDoc();
     el('cvW').value=doc?doc.w:64; el('cvH').value=doc?doc.h:64;
     el('cvControls').hidden=false; el('cvDespeckRow').hidden=false;
@@ -4191,7 +4188,7 @@ function convertPreviewPixels() {
   const tw = Math.max(1, Math.floor(+el('cvW').value || 64)), th = Math.max(1, Math.floor(+el('cvH').value || 64));
   let px;
   if (_cvPx && _cvPx.w === tw && _cvPx.h === th) {
-    /* 1:1 conversion: use the exact decoded pixels, no canvas resampling. */
+
     px = _cvPx.px;
   } else {
     const c = document.createElement('canvas'); c.width = tw; c.height = th;
@@ -4254,7 +4251,7 @@ function applyConvert(makeNewDoc) {
     if(doc.layers.length>=PF.cfg.maxLayers){toast(t('toast.limitLayers'),'warn');return;}
     if(doc.w*doc.h*framesOf(doc)*(doc.layers.length+1)>PF.cfg.maxProjectCells){toast(t('toast.projectTooLarge'),'warn');return;}
     const l = makeLayer('Converted', doc.w, doc.h, framesOf(doc));
-    l.cels[doc.activeFrame].set(r.out); /* land on the frame the user is looking at, not always frame 0 */
+    l.cels[doc.activeFrame].set(r.out);
     const li = doc.activeLayer;
     doc.layers.splice(li + 1, 0, l);
     doc.activeLayer = li + 1;
@@ -4274,7 +4271,7 @@ el('cvPalBtn').addEventListener('click', () => {
   buildPaletteGrid(); markDirty(doc); toast(t('toast.palExtracted'), 'ok');
 });
 
-/* sprite slicer */
+
 let _sheetImg = null, _sheetJSON = null, _sheetJSONPending = false, _sheetPx = null;
 el('shFile').addEventListener('change', e => { if (e.target.files[0]) loadSheetFile(e.target.files[0]); e.target.value = ''; });
 el('shDrop').addEventListener('click', () => el('shFile').click());
@@ -4293,8 +4290,8 @@ function loadSheetFile(file) {
         if(!json?.frames||!meta.length)throw new Error('not aseprite json');
         _sheetJSON=json;
         _sheetJSONPending=true;
-        /* Require the user to choose the PNG associated with this JSON if an older
-           image was already loaded; stale metadata must never be silently reused. */
+
+
         _sheetImg=null;
         _sheetPx=null;
         el('shImportBtn').hidden=true;
@@ -4311,15 +4308,15 @@ function loadSheetFile(file) {
     img.onload=async()=>{
       _sheetImg=img;
       _sheetPx=null;
-      /* Canvas reads premultiply alpha and corrupt RGB of semi-transparent
-         pixels; decode PNG sheets natively so slicing stays pixel-exact. */
+
+
       try{
         if(window.PF_PNG&&/^data:image\/png;base64,/i.test(url)){
           const native=await window.PF_PNG.decode(window.PF_PNG.dataURLToBytes(url));
           if(native&&native.w===img.width&&native.h===img.height)_sheetPx=native;
-          if(_sheetImg!==img)return; /* user already picked another file */
+          if(_sheetImg!==img)return;
         }
-      }catch(e){/* keep the canvas fallback */}
+      }catch(e){ }
       _sheetJSONPending=false;
       el('shControls').hidden=false; el('shPreview').hidden=false;
       const cols=+el('shCols').value||4,rows=+el('shRows').value||2;
@@ -4361,8 +4358,8 @@ el('shImportBtn').addEventListener('click', () => {
   const meta=getAsepriteFrameMeta(_sheetJSON);
   const source=_sheetImg;
   if(meta.length>PF.cfg.maxFrames){toast(t('toast.limitFrames'),'warn');return;}
-  /* Prefer the natively decoded pixels (exact RGBA); the canvas path is only a
-     fallback for formats the native PNG decoder does not cover. */
+
+
   const srcPx=(_sheetPx&&_sheetPx.w===source.width&&_sheetPx.h===source.height)?_sheetPx.px:null;
   let fallbackCtx=null;
   const readRect=(rx,ry,rw,rh)=>{
@@ -4424,8 +4421,8 @@ function importAsepriteJSON(json) {
   if(!json?.meta||!frames.length){toast(t('toast.badProj'),'error');return;}
   _sheetJSON=json;
   _sheetJSONPending=true;
-  /* A stale spritesheet from an earlier pick must never be paired with fresh
-     JSON metadata; force the user to choose the matching image again. */
+
+
   _sheetImg=null;
   _sheetPx=null;
   el('shImportBtn').hidden=true;
@@ -4433,7 +4430,7 @@ function importAsepriteJSON(json) {
   toast(t('toast.aseMetaLoaded'),'ok');
 }
 
-/* project file open */
+
 function pickProjectFile() {
   const inp = document.createElement('input');
   inp.type = 'file'; inp.accept = '.json,application/json';
@@ -4473,7 +4470,7 @@ el('pjDrop').addEventListener('dragover',e=>{e.preventDefault();el('pjDrop').sty
 el('pjDrop').addEventListener('dragleave',()=>el('pjDrop').style.borderColor='var(--border)');
 el('pjDrop').addEventListener('drop',e=>{e.preventDefault();el('pjDrop').style.borderColor='var(--border)';const f=e.dataTransfer.files&&e.dataTransfer.files[0];if(f)openProjectFile(f);});
 
-/* new / resize dialogs */
+
 (function initNewDlg() {
   let bgChoice = 'transparent';
   bindSeg('newBgSeg', v => { bgChoice = v; }, () => bgChoice);
@@ -4511,7 +4508,7 @@ function openResize() {
   openDlg('dlgResize');
 }
 
-/* templates */
+
 const TEMPLATES = [
   { name: 'Dog', pal: { o: '#1a1a1a', f: '#c8874a', e: '#2b2b2b', w: '#ffffff', t: '#e8a86b' }, rows: [
     '................', '....oo....oo....', '...offo..offo...', '...offfoofffo...',
@@ -4620,7 +4617,7 @@ function buildTemplatesDlg() {
     const card = document.createElement('div');
     card.className = 'tplCard' + (i === _tplSel ? ' active' : '');
     const cv = document.createElement('canvas');
-    /* show the live recolor, matching what will actually be inserted */
+
     const map = palName ? templateRecolored(tpl, palName).map : tpl.pal;
     const { out, w, h } = tplToPixels(tpl, map);
     cv.width = w; cv.height = h;
@@ -4684,7 +4681,7 @@ function pasteTemplateCentered(doc, out, w, h) {
 el('tplOpenBtn').addEventListener('click', () => applyTemplate(true));
 el('tplInsertBtn').addEventListener('click', () => applyTemplate(false));
 
-/* project + session history */
+
 const PROJECT_STORE_KEY = 'pf.savedProjects';
 const SNAPSHOT_STORE_KEY = 'pf.snaps';
 const MAX_SAVED_PROJECTS = Number.MAX_SAFE_INTEGER;
@@ -4760,9 +4757,9 @@ function saveProject(){
   }
   syncSavedProjectName(doc);
 
-  /* The first Ctrl+S creates both the permanent project baseline and Version 1
-     in that project's session history. Later Ctrl+S is intentionally disabled;
-     subsequent versions are created with Save session snapshot / Ctrl+Alt+S. */
+
+
+
   const initialSaved=saveSnapshot(t('project.initialSnapshot'),true);
   markDocSaved(doc);
   updateProjectMenuState();
@@ -4792,8 +4789,8 @@ function buildSavedProjectsList(){
       const next=currentProjects.filter(p=>p.id!==project.id);
       if(!setSavedProjects(next)){toast(t('toast.storageFull'),'warn');return;}
       if(!setSnapshots([],project.id)){
-        /* Roll back the project deletion if snapshot cleanup fails, preventing an
-           orphaned project history from becoming detached from its project. */
+
+
         setSavedProjects(currentProjects);
         toast(t('toast.storageFull'),'warn');
         return;
@@ -4821,8 +4818,8 @@ async function openSavedProject(projectId){
     if(!ok)return;
   }
   try{
-    /* Saved project always means the project's own saved baseline. Session snapshots are
-       deliberately kept separate and are only restored from the Session dialog. */
+
+
     const payload=JSON.parse(project.data);
     const docs=await deserializeProject(payload);if(!docs.length)throw new Error('empty');
     const restored=docs[0];
@@ -4882,7 +4879,7 @@ function buildSessionsList(){
         const restored=docs[0];
         restored.projectId=s.projectId;
         restored.id=PF.docs[target].id;
-        /* A restored snapshot is another saved checkpoint in the project history. */
+
         markDocSaved(restored);
         PF.docs[target]=restored;PF.activeDoc=target;
         renderAll();buildPaletteGrid();buildLayerListUI();buildTimelineUI();
@@ -4897,8 +4894,8 @@ function buildSessionsList(){
       }
       const ok=setSnapshots(getSnapshots(doc.projectId).filter(x=>x.id!==s.id),doc.projectId);
       if(!ok){toast(t('toast.storageFull'),'warn');return;}
-      /* If the deleted snapshot was the exact saved checkpoint currently displayed,
-         that state is no longer persisted anywhere, so it must become dirty. */
+
+
       if(representsCurrentState){doc.dirty=true;updateProjectMenuState();updateTabUI();}
       buildSessionsList();
     });
@@ -4940,8 +4937,8 @@ function saveSnapshot(name,silent=false){
     return false;
   }
 
-  /* Snapshot is a saved version, so it clears the dirty marker without modifying
-     the project's one-time saved baseline. */
+
+
   markDocSaved(doc);
   updateProjectMenuState();
   updateTabUI();
@@ -4964,7 +4961,7 @@ window.addEventListener('storage',e=>{
   }
 });
 
-/* shortcuts */
+
 const SHORTCUTS = [
   ['B', 'tool.brush'], ['E', 'tool.eraser'], ['G', 'tool.fill'], ['I', 'tool.picker'], ['L', 'tool.line'],
   ['R', 'tool.rect'], ['O', 'tool.ellipse'], ['M', 'tool.select'], ['V', 'tool.move'], ['S', 'tool.pan'],
@@ -4992,7 +4989,7 @@ window.addEventListener('keydown', e => {
   e.preventDefault(); buildShortcuts(); openDlg('dlgShortcuts');
 });
 
-/* Save shortcuts are captured before modal/input guards so Ctrl+S can never fall through to the browser's Save Page command. */
+
 window.addEventListener('keydown', e => {
   const ctrl=e.ctrlKey||e.metaKey;
   if(!ctrl || e.key.toLowerCase()!=='s' || e.shiftKey)return;
@@ -5000,7 +4997,7 @@ window.addEventListener('keydown', e => {
   if(e.altKey) saveSnapshot(null); else saveProject();
 }, true);
 
-/* main keyboard handler */
+
 window.addEventListener('keydown', e => {
   const tag=e.target?.tagName?.toLowerCase()||'';
   if (/^(input|textarea|select|button|a)$/.test(tag) || e.target.isContentEditable) return;
@@ -5044,32 +5041,32 @@ function syncBrushUI() {
   if (PF._markQuick) PF._markQuick();
 }
 
-/* boot */
+
 async function boot(){
   {const th=storageGet('pf.theme','dark');document.documentElement.dataset.theme=['dark','light','gameboy','arcade','nes','synthwave','cozy'].includes(th)?th:'dark';}PF.lang=storageGet('pf.lang',PF.lang||'en');applyI18n();buildToolGrid();bindToolOptions();bindColorPicker();buildPaletteSelect();bindLayerPanel();bindTimeline();setForegroundColor(hex2u('#3b82f6'));setTool('brush');resizeCanvases();
   new ResizeObserver(()=>resizeCanvases()).observe(el('viewportWrap'));const doc=makeDoc({name:'sprite',w:64,h:64});PF.docs.push(doc);PF.activeDoc=0;
   renderAll();buildPaletteSelect();buildPaletteGrid();buildLayerListUI();buildTimelineUI();const auto=loadAutosave();
-  /* pf.autosave.prev was never consumed anywhere; duplicating the full recovery payload
-     could double localStorage pressure and make large recovery writes fail sooner. */
+
+
   storageRemove('pf.autosave.prev');
   if(auto&&auto.data&&auto.data.docs&&auto.data.docs.length)toast(t('toast.restored')+' · '+new Date(auto.time).toLocaleString(),'warn',{label:t('dlg.apply'),fn:async()=>{try{const docs=await deserializeProject(auto.data);if(docs.length){PF.docs.length=0;for(const d of docs){d.dirty=true;PF.docs.push(d);}PF.activeDoc=clamp(Number(auto.data.activeDoc)||0,0,docs.length-1);clearAutosaveRecovery();renderAll();buildPaletteSelect();buildPaletteGrid();buildLayerListUI();buildTimelineUI();updateProjectMenuState();updateTabUI();scheduleAutosave();}}catch(e){toast(t('toast.badProj'),'error');}}});
   updateAutosaveUI();
   requestRender();setHint('hint.brush');console.log('%cFossprite '+PF.VERSION+' / Deep bug-fixed build','color:#3b82f6;font-weight:bold');
 }
-/* Activity surface: these events feed ONLY the idle detector. Drawing edits are
-   fingerprinted separately by markDirty(), so mouse movement cannot postpone the
-   5-second quick-save deadline or the 3-minute failsafe deadline. */
+
+
+
 AUTOSAVE_ACTIVITY_EVENTS.forEach(evt=>window.addEventListener(evt,noteActivity,{passive:true}));
 
-/* Tab/application lifecycle: multiple signals intentionally overlap. One signal
-   can be skipped by a browser, while the leave latch collapses duplicate signals. */
+
+
 document.addEventListener('visibilitychange',()=>{
   if(document.visibilityState==='hidden')autosaveOnLeave('visibilitychange-hidden');
   else resetAutosaveAfterReturn();
 });
 window.addEventListener('blur',()=>{
-  /* blur is a useful extra net for window switching; visibilitychange remains
-     the canonical browser-tab switch signal. */
+
+
   if(document.visibilityState!=='hidden')autosaveOnLeave('window-blur');
 });
 window.addEventListener('focus',resetAutosaveAfterReturn);
@@ -5084,8 +5081,8 @@ window.addEventListener('beforeunload',e=>{
   if(isAutosaveEnabled()){
     const ok=autosaveOnLeave('beforeunload');
     if(!ok){
-      /* The browser may still show a native leave confirmation. This does NOT
-         claim the save succeeded; it only prevents silent loss when storage fails. */
+
+
       e.preventDefault();
       e.returnValue='';
     }
@@ -5098,7 +5095,7 @@ boot();
 </script>
 
 <style id="pf-pro-style">
-/* Fossprite Pro feature pack — additive layer; core editor logic remains intact. */
+
 #pfProBtn{height:32px;padding:0 10px;border-radius:4px;background:var(--surface-2);color:var(--foreground);font-size:11px;font-weight:800;letter-spacing:.04em;border:1px solid var(--border)}
 #pfProBtn:hover{color:var(--primary);border-color:var(--primary)}
 #pfExtraMenu .dropdown{min-width:190px}
@@ -5141,20 +5138,20 @@ boot();
 </style>
 <script>
 "use strict";
-/* Fossprite Pro Feature Pack 1.0
-   Ten production-oriented pixel-art additions:
-   1. Animation tags/ranges
-   2. Layer blend modes + lock
-   3. Color wheel + harmonies
-   4. Palette shading ink
-   5. Bayer/checker dithering
-   6. Selection add/subtract/intersect/invert/content
-   7. Clean nearest-neighbor rotate/scale transforms
-   8. Seamless tiled canvas preview
-   9. Reusable tile stamps/tileset brush
-  10. Indexed/palette-lock drawing mode
-   Plus reusable custom pattern brushes as a supporting workflow.
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 (() => {
   const PRO_VERSION = "1.0.0";
   const BLENDS = ["normal","multiply","screen","overlay","darken","lighten","add"];
@@ -5226,7 +5223,7 @@ boot();
   }
   PF.docs.forEach(ensureDocPro);
 
-  /* Extend document/layer factories for future docs while retaining original behavior. */
+
   const origMakeDoc = makeDoc;
   makeDoc = function(opts={}) { const d=origMakeDoc(opts); ensureDocPro(d); return d; };
   window.makeDoc=makeDoc;
@@ -5253,7 +5250,7 @@ boot();
     return t;
   }
 
-  /* --------------------- DOM / Pro workspace --------------------- */
+
   const proModal = document.createElement("div");
   proModal.className = "modal-veil"; proModal.id = "dlgPro";
   proModal.innerHTML = `
@@ -5377,7 +5374,7 @@ boot();
   proModal.querySelectorAll("[data-pf-close]").forEach(b=>b.addEventListener("click",()=>closeDlg("dlgPro")));
   proModal.addEventListener("click",e=>{ if(e.target===proModal) closeDlg("dlgPro"); });
 
-  /* Extra is exposed as a top-level menu beside File/Edit/View/Help. */
+
   const menus=document.getElementById("menus");
   if(menus&&!document.getElementById("pfExtraMenu")){
     const extra=document.createElement("div");
@@ -5431,7 +5428,7 @@ boot();
     if(document.querySelector("#dlgPro.open")) renderAllProUI();
   }
 
-  /* --------------------- 1. Animation tags --------------------- */
+
   function renderTagsUI(){
     const doc=activeDoc(); if(!doc || !el("pfTagList")) return; ensureDocPro(doc);
     const list=el("pfTagList"); list.innerHTML="";
@@ -5505,8 +5502,8 @@ boot();
   advancePlayback=function(){
     const doc=activeDoc();if(!doc){return origAdvancePlayback();}
     const t=activeTag(doc);if(!t || !PF.ui.playing)return origAdvancePlayback();
-    /* Degenerate single-frame tag: without this guard ping-pong flips the
-       direction every tick and the playhead lands on frame -1 (blank canvas). */
+
+
     if(t.from===t.to){PF.ui.playingFrame=t.from;PF._playAcc=0;return;}
     const dir=t.direction==="reverse"?-1:(t.direction==="pingpong"?PF.pro.pingDir:1);
     let acc=PF._playAcc||0;
@@ -5532,7 +5529,7 @@ boot();
   };
   window.advancePlayback=advancePlayback;
 
-  /* --------------------- 2. Layer blend modes + lock --------------------- */
+
   function blendRGB(mode,sr,sg,sb,dr,dg,db){
     const f=(s,d)=> {
       if(mode==="multiply")return (s*d)/255;
@@ -5617,7 +5614,7 @@ boot();
     }]);markDirty(doc);buildLayerListUI();
   });
 
-  /* --------------------- 3. Color wheel + harmonies --------------------- */
+
   function hsvToHex(h,s,v){
     const [r,g,b]=hsv2rgb(((h%360)+360)%360,s,v);return u2hex(rgba2u(r,g,b,255));
   }
@@ -5662,7 +5659,7 @@ boot();
     const [rr,gg,bb]=hsv2rgb(pstate.harmony.hue,PF.color.hsv.s||.75,PF.color.hsv.v||.9);setForegroundColor(rgba2u(rr,gg,bb,255));
   });
 
-  /* --------------------- 4. Shading ink --------------------- */
+
   function setShading(on){
     pstate.shading.on=!!on;
     el("pfShadeToggle").textContent=pstate.shading.on?t("pro.on"):t("pro.off");
@@ -5694,7 +5691,7 @@ boot();
   el("pfShadeStep").value=String(pstate.shading.step);el("pfShadeStepVal").textContent=String(pstate.shading.step);
   el("pfShadeStep").addEventListener("input",e=>{pstate.shading.step=clamp(+e.target.value,1,4);el("pfShadeStepVal").textContent=pstate.shading.step;persistSettings();});
 
-  /* --------------------- 5. Dither brush --------------------- */
+
   const BAYER_TABLES={
     2:[0,2,3,1],
     4:[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5],
@@ -5730,7 +5727,7 @@ boot();
   el("pfDitherAmount").value=String(pstate.dither.amount);el("pfDitherAmountVal").textContent=pstate.dither.amount+"%";
   el("pfDitherAmount").addEventListener("input",e=>{pstate.dither.amount=clamp(+e.target.value,1,100);el("pfDitherAmountVal").textContent=pstate.dither.amount+"%";persistSettings();});
 
-  /* --------------------- 6. Advanced selection --------------------- */
+
   const originalSelectOpKey = e => {
     if(e.shiftKey && e.ctrlKey)return "intersect";
     if(e.shiftKey)return "add";
@@ -5754,8 +5751,8 @@ boot();
     }
     if(mode==="subtract"){
       if(!a)return null;if(!b)return a;
-      /* Rectangle subtraction can create up to four rectangles; the current selection model stores one rectangle,
-         so keep the largest remaining connected rectangle to stay deterministic. */
+
+
       const ix=Math.max(a.x,b.x),iy=Math.max(a.y,b.y),ix2=Math.min(a.x+a.w,b.x+b.w),iy2=Math.min(a.y+a.h,b.y+b.h);
       if(ix>=ix2||iy>=iy2)return {...a};
       const candidates=[];
@@ -5793,7 +5790,7 @@ boot();
     el("pfSelUtil").value="";
   });
 
-  /* --------------------- 7. Pixel rotate / scale --------------------- */
+
   function scaleNearest(data,w,h,scale){
     const nw=clamp(Math.round(w*scale),1,256),nh=clamp(Math.round(h*scale),1,256),out=new Uint32Array(nw*nh);
     for(let y=0;y<nh;y++){const sy=Math.min(h-1,Math.floor(y/scale));for(let x=0;x<nw;x++){const sx=Math.min(w-1,Math.floor(x/scale));out[y*nw+x]=data[sy*w+sx];}}
@@ -5840,7 +5837,7 @@ boot();
   document.querySelectorAll("[data-pf-transform-preset]").forEach(b=>b.addEventListener("click",()=>{el("pfTransformAngle").value=b.dataset.pfTransformPreset;}));
   el("pfTransformApply").addEventListener("click",()=>transformSelection(+el("pfTransformAngle").value,+el("pfTransformScale").value));
 
-  /* --------------------- 8. Tiled canvas --------------------- */
+
   function setTiled(on){
     pstate.tiled=!!on;el("pfTiledToggle").textContent=pstate.tiled?t("pro.on"):t("pro.off");el("pfTiledToggle").classList.toggle("active",pstate.tiled);persistSettings();requestRender();
   }
@@ -5862,10 +5859,10 @@ boot();
   el("pfTiledToggle").addEventListener("click",()=>setTiled(!pstate.tiled));
   el("pfTiledCenter").addEventListener("click",()=>zoomFit());
 
-  /* --------------------- 9. Tile stamps / tileset brush --------------------- */
+
   function tileHash(data){
-    /* FNV-1a over 32-bit RGBA values: fast even for large tilesets. Hash matches are still
-       verified byte-for-byte, so a rare collision can never merge distinct tiles. */
+
+
     let h=2166136261>>>0;
     for(let i=0;i<data.length;i++){const v=data[i]>>>0;h^=v&255;h=Math.imul(h,16777619);h^=(v>>>8)&255;h=Math.imul(h,16777619);h^=(v>>>16)&255;h=Math.imul(h,16777619);h^=(v>>>24)&255;h=Math.imul(h,16777619);}
     return h>>>0;
@@ -5940,7 +5937,7 @@ boot();
     });g.appendChild(wrap);
   }
 
-  /* --------------------- custom pattern brush --------------------- */
+
   const originalStampBrush=stampBrush;
   function stampPattern(cel,w,h,cx,cy,painted){
     const br=pstate.customBrushes.find(b=>b.id===pstate.brushActive);if(!br)return false;
@@ -5980,7 +5977,7 @@ boot();
   el("pfBrushClear").addEventListener("click",()=>{pstate.brushActive=null;renderBrushListUI();});
   function renderBrushListUISafe(){try{renderBrushListUI();}catch{}}
 
-  /* --------------------- 10. Palette lock --------------------- */
+
   function nearestPaletteColor(doc,u){
     if(!doc?.palette?.length)return u;
     const r=u&255,g=(u>>>8)&255,b=(u>>>16)&255;
@@ -6002,7 +5999,7 @@ boot();
   el("pfPaletteLock").addEventListener("click",()=>setPaletteLock(!pstate.paletteLock));
   el("pfSnapNow").addEventListener("click",()=>{const doc=activeDoc();if(doc)setForegroundColor(nearestPaletteColor(doc,PF.color.fg));});
 
-  /* --------------------- persistence extensions --------------------- */
+
   const origSerializeProject=serializeProject;
   serializeProject=function(){
     PF.docs.forEach(ensureDocPro);
@@ -6041,7 +6038,7 @@ boot();
   };
   window.deserializeProject=deserializeProject;
 
-  /* Ensure layer creation/duplication gets defaults and make UI resilient. */
+
   const origLayerDup=layerDup;
   layerDup=function(){
     const doc=activeDoc(),src=doc?.layers?.[doc.activeLayer];origLayerDup();
@@ -6058,7 +6055,7 @@ boot();
   layerDel=function(){origLayerDel();const doc=activeDoc();if(doc)ensureDocPro(doc);buildLayerListUI();};
   window.layerDel=layerDel;
 
-  /* Painter lock safety: intercept editing on locked active layer before the existing pointer handler. */
+
   selCanvas.addEventListener("pointerdown",e=>{
     if(pstate.tileMode)return;
     const doc=activeDoc();if(!doc||PF.ui.playing)return;
@@ -6069,8 +6066,8 @@ boot();
     }
   },true);
 
-  /* Lock must also cover the keyboard/menu edit paths, not just pointer tools:
-     Delete, Cut, Paste, Flip and template insertion all mutate the active cel. */
+
+
   const lockedActive=()=>{const d=activeDoc();return !!(d&&d.layers[d.activeLayer]&&d.layers[d.activeLayer].locked);};
   const guardLocked=(name,applies)=>{const orig=window[name];if(typeof orig!=="function")return;const wrapped=function(...a){if(applies(a)&&lockedActive()){toast(t("pro.layerLocked"),"warn");return;}return orig.apply(this,a);};window[name]=wrapped;};
   guardLocked("copySel",a=>a[0]===true);
@@ -6079,8 +6076,8 @@ boot();
   guardLocked("flipLayer",()=>true);
   guardLocked("applyTemplate",a=>a[0]===false);
 
-  /* An in-progress tile stroke must be committed before the document can be
-     switched/closed, otherwise the pixels are left without a history entry. */
+
+
   const origFinishActiveOps=finishActiveOps;
   finishActiveOps=function(){
     const m=PF._tileStroke;
@@ -6089,7 +6086,7 @@ boot();
   };
   window.finishActiveOps=finishActiveOps;
 
-  /* --------------------- UI synchronization --------------------- */
+
   function updateQuickButtons(){
     const q=document.querySelector("#pfProPanel");if(!q)return;
     const map={tiled:pstate.tiled,dither:pstate.dither.on,shading:pstate.shading.on,palette:pstate.paletteLock,tile:pstate.tileMode};
@@ -6115,7 +6112,7 @@ boot();
     const doc=activeDoc();if(doc)ensureDocPro(doc);
     renderTagsUI();updateLayerProUI();updateAllProFlags();updateTransformUI();updateHarmonyUI();renderTileListUI();renderBrushListUISafe();
   }
-  /* Keep Pro UI synced after common editor redraws. */
+
   const origRenderAll=renderAll;
   renderAll=function(){origRenderAll();try{renderAllProUI();}catch{}};
   window.renderAll=renderAll;
@@ -6130,7 +6127,7 @@ boot();
   window.closeDoc=closeDoc;
   window.ensureDocPro=ensureDocPro;
 
-  /* Keyboard shortcuts for Pro workflows. */
+
   window.addEventListener("keydown",e=>{
     const tag=document.querySelector(".modal-veil.open");if(tag)return;
     const elTag=e.target?.tagName?.toLowerCase()||"";
@@ -6143,11 +6140,11 @@ boot();
     if(ctrl&&e.altKey&&e.key.toLowerCase()==="i"){e.preventDefault();setPaletteLock(!pstate.paletteLock);}
   });
 
-  /* Initial synchronization after the original boot completed. */
+
   try {
     ensureDocPro(activeDoc());
     if (PF.docs.length) { 
-      /* Repair any restored layers that predate the Pro pack. */
+
       PF.docs.forEach(ensureDocPro);
       buildLayerListUI();
     }
@@ -6157,16 +6154,16 @@ boot();
 </script>
 
 <script id="pf-vendor-codecs">
-/* ==========================================================================
-   FOSSPRITE VENDORED CODECS (offline fork)
-   Exact upstream builds of the pinned open-source packages, embedded as
-   base64 so the app NEVER contacts a CDN. Same code, same versions:
-     - fflate 0.8.3 (MIT)
-     - ag-psd 31.0.2 (MIT) + its esm.sh node-buffer shim
-     - @pixelation/aseprite 1.2.7 (Apache-2.0)
-     - @theprogrammingiantpanda/xcfreader 1.1.0 (MIT)
-     - @wieslawsoltes/quikgraphweb 0.2.0 nrbf (Ms-PL)
-   ========================================================================== */
+
+
+
+
+
+
+
+
+
+
 window.PF_VENDOR_SRC = {
   fflate: [
     "LyogZXNtLnNoIC0gZmZsYXRlQDAuOC4zICovCnZhciBjbj17fSxRbj0oZnVuY3Rpb24obixyLHQsZSxpKXt2YXIgYT1uZXcgV29y" +
@@ -12458,30 +12455,30 @@ window.PF_VENDOR_SRC = {
 (() => {
   'use strict';
 
-  /* ========================================================================
-     FOSSPRITE UNIVERSAL FORMAT I/O
-     Browser-local adapters. Third-party codecs are vendored inside this file
-     (offline fork) and decoded to in-memory modules only when used.
-     Open-source dependencies (pinned):
-       - ag-psd 31.0.2 (MIT)
-       - @pixelation/aseprite 1.2.7 (Apache-2.0)
-       - @theprogrammingiantpanda/xcfreader 1.1.0 (MIT)
-       - fflate 0.8.3 (MIT)
-       - @wieslawsoltes/quikgraphweb 0.2.0 / MS-NRBF submodule (Ms-PL)
-       - GAL implementation cross-checked against GARbro ImageGAL.cs (MIT); no GARbro runtime is bundled
-     ------------------------------------------------------------------------
-     Compatibility contract:
-       • Import/export never uploads artwork.
-       • Unsupported source features are rejected with explicit diagnostics.
-       • Binary formats with no verified open-source browser codec are not
-         faked as valid files.
-     ======================================================================== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const PX = window.PF_FORMATS = window.PF_FORMATS || {};
 
-  /* Offline fork: codecs are vendored in this file (window.PF_VENDOR_SRC,
-     base64 ESM). No CDN, no network - modules are imported from in-memory
-     Blob URLs on first use, so nothing ever leaves the browser. */
+
+
+
   const _libs = new Map();
   const _vendorUrls = new Map();
   function vendorDecode(b64str){
@@ -12562,8 +12559,8 @@ window.PF_VENDOR_SRC = {
     const p=(async()=>{
       let code;
       if(id==='agPsd'){
-        /* ag-psd statically imports the vendored node-buffer shim; rewrite the
-           specifier to the shim's in-memory Blob URL before importing. */
+
+
         code = vendorDecode((window.PF_VENDOR_SRC||{}).agPsd)
           .replace('"/node/buffer.mjs"', JSON.stringify(vendorModuleUrl('buffer')));
       }
@@ -12591,16 +12588,16 @@ window.PF_VENDOR_SRC = {
     }catch(e){ if(bmp)try{bmp.close();}catch{}; throw e; }
   }
   async function celToPng(cel,w,h){
-    try{ return await pngEncodeU32(cel,w,h); }catch(e){ /* canvas fallback below */ }
+    try{ return await pngEncodeU32(cel,w,h); }catch(e){   }
     const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.imageSmoothingEnabled=false;x.putImageData(imageDataFromCel(cel,w,h),0,0);const b=await new Promise(r=>c.toBlob(r,'image/png'));if(!b)throw new Error('PNG encoder failed.');return new Uint8Array(await b.arrayBuffer());
   }
   async function celToDataURL(cel,w,h){ const bytes=await celToPng(cel,w,h); let s=''; const chunk=0x8000; for(let i=0;i<bytes.length;i+=chunk)s+=String.fromCharCode(...bytes.subarray(i,i+chunk)); return 'data:image/png;base64,'+btoa(s); }
   function pngDataURLToBytes(s){const i=String(s).indexOf('base64,');if(i<0)throw new Error('Expected a base64 PNG data URL.');const bin=atob(String(s).slice(i+7));const b=new Uint8Array(bin.length);for(let j=0;j<bin.length;j++)b[j]=bin.charCodeAt(j);return b;}
 
-  /* ------------------- lossless native PNG codec -------------------
-     Canvas 2D stores premultiplied alpha, so toBlob/getImageData silently
-     quantizes RGB of semi-transparent pixels. Pixel-art workflows need exact
-     RGBA round-trips, so PNG encode/decode is done natively here. */
+
+
+
+
   function writeU32BE(a,v){a.push((v>>>24)&255,(v>>>16)&255,(v>>>8)&255,v&255);}
   const PNG_SIG=new Uint8Array([137,80,78,71,13,10,26,10]);
   function pngChunk(type,data){
@@ -12617,7 +12614,7 @@ window.PF_VENDOR_SRC = {
     for(let y=0;y<h;y++){const ro=y*stride;for(let x=0;x<w;x++){const u=cel[y*w+x]>>>0,q=ro+1+x*4;raw[q]=u&255;raw[q+1]=(u>>>8)&255;raw[q+2]=(u>>>16)&255;raw[q+3]=(u>>>24)&255;}}
     return raw;
   }
-  /* Synchronous encoder (zlib "stored" blocks) for contexts that cannot await. */
+
   function pngEncodeU32Sync(cel,w,h){
     const raw=pngRawScanlines(cel,w,h);
     const z=[0x78,0x01];
@@ -12631,15 +12628,15 @@ window.PF_VENDOR_SRC = {
     writeU32BE(z,((s2<<16)|s1)>>>0);
     return concatBytes([PNG_SIG,pngChunk('IHDR',pngIHDR(w,h)),pngChunk('IDAT',new Uint8Array(z)),pngChunk('IEND',new Uint8Array(0))]);
   }
-  /* Async encoder with real DEFLATE compression (smaller files). */
+
   async function pngEncodeU32(cel,w,h){
     const f=await loadLib('fflate');
     const idat=f.zlibSync(pngRawScanlines(cel,w,h));
     return concatBytes([PNG_SIG,pngChunk('IHDR',pngIHDR(w,h)),pngChunk('IDAT',idat),pngChunk('IEND',new Uint8Array(0))]);
   }
-  /* Decoder: 8-bit non-interlaced PNG, color types 0/2/3/4/6. Returns
-     {w,h,px:Uint32Array} or null when the variant is unsupported (caller then
-     falls back to the browser decoder). */
+
+
+
   async function pngDecodeU32(bytes){
     try{
       if(!(bytes instanceof Uint8Array)||bytes.length<8)return null;
@@ -12657,7 +12654,7 @@ window.PF_VENDOR_SRC = {
         p+=12+len;
       }
       if(!w||!h||!idat.length||interlace!==0||bitDepth!==8)return null;
-      if(w>4096||h>4096)return null; /* large images stay on the browser decoder */
+      if(w>4096||h>4096)return null;
       const chMap={0:1,2:3,3:1,4:2,6:4},ch=chMap[colorType];
       if(!ch)return null;
       if(colorType===3&&!plte)return null;
@@ -12691,7 +12688,7 @@ window.PF_VENDOR_SRC = {
       return {w,h,px:out};
     }catch(e){return null;}
   }
-  /* Crop a rectangle out of an ImageData without touching canvas (exact). */
+
   function cropImageDataU32(img,sx,sy,w,h){
     const src=new Uint32Array(img.data.buffer.slice(img.data.byteOffset,img.data.byteOffset+img.data.byteLength));
     const out=new Uint32Array(w*h);
@@ -12731,7 +12728,7 @@ window.PF_VENDOR_SRC = {
     finishActiveOps();stopPlayback();PF.docs.length=0;PF.docs.push(doc);PF.activeDoc=0;renderAll();buildPaletteGrid();buildLayerListUI();buildTimelineUI();updateProjectMenuState();updateTabUI();scheduleAutosave();toast(opts.toast||`Imported ${name}`,'ok');return true;
   }
 
-  /* ------------------------------ ZIP ---------------------------------- */
+
   async function unzip(bytes,label='archive'){
     if(!(bytes instanceof Uint8Array))bytes=new Uint8Array(bytes);if(bytes.length>PF.cfg.maxImportBytes)throw new Error(`${label} exceeds Fossprite's import size limit.`);
     const mod=await loadLib('fflate');let out;try{out=mod.unzipSync(bytes);}catch(e){throw new Error(`Invalid ${label}: ${e?.message||e}`);}const m=new Map(Object.entries(out));return validateArchiveMap(m,label);
@@ -12745,7 +12742,7 @@ window.PF_VENDOR_SRC = {
     const cd=concatBytes(central), body=concatBytes(local), end=[];writeU32LE(end,0x06054b50);writeU16LE(end,0);writeU16LE(end,0);writeU16LE(end,central.length);writeU16LE(end,central.length);writeU32LE(end,cd.length);writeU32LE(end,body.length);writeU16LE(end,0);return concatBytes([body,cd,new Uint8Array(end)]);
   }
 
-  /* --------------------------- ORA ------------------------------------- */
+
   function xmlEscape(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');}
   async function exportORA(doc,name){
     const entries=[['mimetype',bytesUtf8('image/openraster')]];let xml=`<?xml version="1.0" encoding="UTF-8"?>\n<image version="0.0.6" w="${doc.w}" h="${doc.h}"><stack name="${xmlEscape(doc.name)}">`;
@@ -12763,7 +12760,7 @@ window.PF_VENDOR_SRC = {
   }
 
 
-  /* --------------------------- Pixelorama ------------------------------- */
+
   async function importPXO(file){
     const z=await unzip(new Uint8Array(await file.arrayBuffer()),'Pixelorama archive');const jraw=z.get('data.json');if(!jraw)throw new Error('Pixelorama data.json is missing.');const mime=textUtf8(z.get('mimetype')||new Uint8Array());if(mime&&mime!=='application/x-pixelorama')throw new Error('Pixelorama mimetype is invalid.');let j;try{j=JSON.parse(textUtf8(jraw));}catch{throw new Error('Pixelorama data.json is invalid JSON.');}
     const version=Number(j.pxo_version);if(version!==6&&version!==7)throw new Error(`Unsupported Pixelorama PXO version ${j.pxo_version}. Fossprite supports PXO v6–v7.`);if(Number(j.color_mode)!==5)throw new Error('Only Pixelorama RGBA8 projects are supported.');const w=Number(j.size_x),h=Number(j.size_y);assertSize(w,h,'Pixelorama');assertFrames(j.frames?.length);assertLayers(j.layers?.length);
@@ -12780,7 +12777,7 @@ window.PF_VENDOR_SRC = {
   }
 
 
-  /* ----------------------------- Pixilart -------------------------------- */
+
   async function importPixil(file){
     const j=JSON.parse(await file.text());if(j.application!=='pixil'||j.type!=='.pixil')throw new Error('Not a Pixilart project.');const w=Number(j.width),h=Number(j.height);assertSize(w,h,'Pixilart');assertFrames(j.frames.length);const first=j.frames[0];assertLayers(first.layers.length);const layers=first.layers.map((l,li)=>({name:l.name||`Layer ${li+1}`,visible:true,opacity:Math.round(clamp(Number(l.opacity)||0,0,1)*255),cels:[]}));for(let fi=0;fi<j.frames.length;fi++){const fr=j.frames[fi];if(Number(fr.speed)<=0)throw new Error('Invalid Pixilart frame speed.');if(fr.layers.length!==layers.length)throw new Error('Pixilart layer count changes between frames.');for(let li=0;li<layers.length;li++){const sl=fr.layers[li];if(sl.options?.blend&&sl.options.blend!=='source-over')throw new Error('Unsupported Pixilart blend mode.');const b=pngDataURLToBytes(sl.src);const img=await imageDataFromBytes(b,'image/png',w,h);layers[li].cels.push({frameIndex:fi,cel:u32rgbaFromImageData(img)});}}return pxCommitProject({width:w,height:h,frames:j.frames.map((f,i)=>({index:i,durationMs:clamp(Number(f.speed)||100,20,10000)})),layers},file.name);
   }
@@ -12789,7 +12786,7 @@ window.PF_VENDOR_SRC = {
     const j={application:'pixil',type:'.pixil',version:'2.7.0',website:'pixilart.com',width:doc.w,height:doc.h,frames};downloadBlob(new Blob([JSON.stringify(j)],{type:'application/json'}),name+'.pixil');toast(t('toast.exported')+' Pixilart','ok');
   }
 
-  /* ------------------------------ Piskel --------------------------------- */
+
   async function exportPiskel(doc,name){
     const layers=[];const sheet=document.createElement('canvas');sheet.width=doc.w*doc.durations.length;sheet.height=doc.h;const x=sheet.getContext('2d');x.imageSmoothingEnabled=false;for(let li=0;li<doc.layers.length;li++){const strip=new Uint32Array(sheet.width*sheet.height);for(let fi=0;fi<doc.durations.length;fi++){const cel=doc.layers[li].cels[fi];for(let y=0;y<doc.h;y++)strip.set(cel.subarray(y*doc.w,(y+1)*doc.w),y*sheet.width+fi*doc.w);}const bin=await pngEncodeU32(strip,sheet.width,sheet.height);let s='';for(let i=0;i<bin.length;i+=0x8000)s+=String.fromCharCode(...bin.subarray(i,i+0x8000));layers.push(JSON.stringify({name:doc.layers[li].name,opacity:doc.layers[li].opacity,visible:doc.layers[li].visible,frameCount:doc.durations.length,chunks:[{layout:Array.from({length:doc.durations.length},(_,i)=>[i]),base64PNG:'data:image/png;base64,'+btoa(s)}]}));}
     const fps=Math.max(1,Math.round(1000/(doc.durations.reduce((a,b)=>a+b,0)/doc.durations.length)));const j={modelVersion:2,piskel:{name:name,description:'Exported by Fossprite',fps,width:doc.w,height:doc.h,layers,hiddenFrames:[],expanded:true}};downloadBlob(new Blob([JSON.stringify(j)],{type:'application/json'}),name+'.piskel');toast(t('toast.exported')+' Piskel','ok');
@@ -12799,7 +12796,7 @@ window.PF_VENDOR_SRC = {
     if(!frameCount)throw new Error('Piskel contains no frames.');return pxCommitProject({width:Number(p.width),height:Number(p.height),frames:Array.from({length:frameCount},(_,i)=>({index:i,durationMs:clamp(Math.round(1000/(Number(p.fps)||10)),20,10000)})),layers},file.name);
   }
 
-  /* --------------------------- Godot SpriteFrames ------------------------ */
+
   function godotTscnAtlas(doc,name){
     const lines=['[gd_resource type="SpriteFrames" load_steps='+String(2+doc.durations.length)+' format=3]','','[ext_resource type="Texture2D" path="res://'+name+'.png" id="1_tex"]',''];
     const frameIds=[];for(let fi=0;fi<doc.durations.length;fi++){const id='AtlasTexture_'+fi;frameIds.push(id);lines.push(`[sub_resource type="AtlasTexture" id="${id}"]`,'atlas = ExtResource("1_tex")',`region = Rect2(${fi*doc.w}, 0, ${doc.w}, ${doc.h})`,'');}
@@ -12811,7 +12808,7 @@ window.PF_VENDOR_SRC = {
   }
   async function exportGodot(doc,name){const atlasW=doc.w*doc.durations.length,atlas=new Uint32Array(atlasW*doc.h);for(let fi=0;fi<doc.durations.length;fi++){const buf=new Uint32Array(doc.w*doc.h);compositeFrame(doc,fi,buf);for(let y=0;y<doc.h;y++)atlas.set(buf.subarray(y*doc.w,(y+1)*doc.w),y*atlasW+fi*doc.w);}const b=new Blob([await pngEncodeU32(atlas,atlasW,doc.h)],{type:'image/png'});downloadBlob(b,name+'.png');downloadBlob(new Blob([godotTscnAtlas(doc,name)],{type:'text/plain'}),name+'.tres');toast(t('toast.exported')+' Godot SpriteFrames (PNG + .tres)','ok');}
 
-  /* ------------------------------ VOX ------------------------------------ */
+
   function voxPalette(){return [
     0x00000000, 0xffffffff, 0xffccffff, 0xff99ffff, 0xff66ffff, 0xff33ffff, 0xff00ffff, 0xffffccff,
     0xffccccff, 0xff99ccff, 0xff66ccff, 0xff33ccff, 0xff00ccff, 0xffff99ff, 0xffcc99ff, 0xff9999ff,
@@ -12890,7 +12887,7 @@ window.PF_VENDOR_SRC = {
   }
   async function importVOX(file){return pxCommitProject(parseVOX(new Uint8Array(await file.arrayBuffer())),file.name,{toast:'Imported VOX as a top-down 2D projection'});}
 
-  /* ----------------------------- Pixaki ---------------------------------- */
+
   function plistValue(node){if(!node)return null;const tag=(node.tagName||'').toLowerCase();if(tag==='plist')return plistValue(node.firstElementChild);if(tag==='dict'){const out={};const cs=[...node.children];for(let i=0;i<cs.length;i+=2){const k=cs[i];const v=cs[i+1];if(k&&k.tagName.toLowerCase()==='key')out[k.textContent]=plistValue(v);}return out;}if(tag==='array')return[...node.children].map(plistValue);if(tag==='integer'||tag==='real')return Number(node.textContent);if(tag==='true')return true;if(tag==='false')return false;if(tag==='string')return node.textContent||'';if(tag==='data')return atob(node.textContent.replace(/\s+/g,''));return node.textContent||'';}
   function parsePlist(text){const d=new DOMParser().parseFromString(text,'application/xml');if(d.querySelector('parsererror'))throw new Error('Invalid property list.');const r=d.querySelector('plist');return plistValue(r);}
   function plistNode(v){if(Array.isArray(v))return `<array>${v.map(plistNode).join('')}</array>`;if(isObj(v))return `<dict>${Object.entries(v).map(([k,val])=>`<key>${xmlEscape(k)}</key>${plistNode(val)}`).join('')}</dict>`;if(typeof v==='boolean')return v?'<true/>':'<false/>';if(typeof v==='number')return Number.isInteger(v)?`<integer>${v}</integer>`:`<real>${v}</real>`;return `<string>${xmlEscape(v)}</string>`;}
@@ -12898,7 +12895,7 @@ window.PF_VENDOR_SRC = {
   async function exportPixaki(doc,name){const entries=[];const symbols=[];const frames=[];for(let fi=0;fi<doc.durations.length;fi++){const layers=[];for(let li=0;li<doc.layers.length;li++){const fn=`Layer[${crypto.randomUUID?.()||uid()}].png`;entries.push([fn,await celToPng(doc.layers[li].cels[fi],doc.w,doc.h)]);layers.push({ImageFilename:fn,Alpha:doc.layers[li].opacity,Visible:doc.layers[li].visible,Reference:false,Size:{Width:doc.w,Height:doc.h}});}frames.push({Duration:doc.durations[fi],Layers:layers,SelectedLayerIndex:0,Hidden:false});}symbols.push({Name:'Fossprite',Frames:frames,SelectedFrameIndex:doc.activeFrame});const plist={Version:2,Size:{Width:doc.w,Height:doc.h},AnimationSpeed:10,Symbols:symbols,SelectedSymbolIndex:0,ColorPresets:{},GridSettings:{}};entries.unshift(['DocumentInfo.plist',bytesUtf8(plistText(plist))]);const merged=await celToPng((()=>{const b=new Uint32Array(doc.w*doc.h);compositeFrame(doc,doc.activeFrame,b);return b;})(),doc.w,doc.h);entries.push(['Preview.png',merged]);downloadBlob(new Blob([zipStore(entries)],{type:'application/octet-stream'}),name+'.pixaki');toast(t('toast.exported')+' Pixaki v2 subset','ok');}
   async function importPixaki(file){const z=await unzip(new Uint8Array(await file.arrayBuffer()));const raw=z.get('DocumentInfo.plist');if(!raw)throw new Error('Pixaki DocumentInfo.plist is missing.');const doc=plistValue(new DOMParser().parseFromString(textUtf8(raw),'application/xml').querySelector('plist'));const symbol=doc?.Symbols?.[doc.SelectedSymbolIndex||0];if(!symbol?.Frames?.length)throw new Error('Pixaki v2 symbol/frames not found.');const first=symbol.Frames[0];const w=Number(doc.Size?.Width),h=Number(doc.Size?.Height);assertSize(w,h,'Pixaki');assertFrames(symbol.Frames.length);assertLayers(first.Layers.length);const layers=first.Layers.map((l,li)=>({name:`Layer ${li+1}`,visible:l.Visible!==false,opacity:Math.round(clamp(Number(l.Alpha??1),0,1)*255),cels:[]}));for(let fi=0;fi<symbol.Frames.length;fi++){const fr=symbol.Frames[fi];if(fr.Layers.length!==layers.length)throw new Error('Pixaki layer count changes between frames.');for(let li=0;li<layers.length;li++){const ref=fr.Layers[li];const fn=String(ref.ImageFilename||'');if(fn.includes('..')||!z.has(fn))throw new Error(`Pixaki image ${fn} is missing.`);const img=await imageDataFromBytes(z.get(fn),'image/png',w,h);layers[li].cels.push({frameIndex:fi,cel:u32rgbaFromImageData(img)});layers[li].name=layers[li].name||`Layer ${li+1}`;}}return pxCommitProject({width:w,height:h,frames:symbol.Frames.map((f,i)=>({index:i,durationMs:clamp(Number(f.Duration)||100,20,10000)})),layers},file.name);}
 
-  /* --------------------------- Pixel Studio PSP -------------------------- */
+
   function findLayerPNGFromPsp(layer){
     if(typeof layer._source==='string'&&layer._source.length>40)try{return pngDataURLToBytes(layer._source);}catch{}
     try{if(typeof layer._historyJson==='string'){const h=JSON.parse(layer._historyJson);for(const a of (h.Actions||[])){if(typeof a.Meta==='string'){const m=JSON.parse(a.Meta);if(typeof m.Pixels==='string')return pngDataURLToBytes('data:image/png;base64,'+m.Pixels);}}}}catch{}
@@ -12907,13 +12904,13 @@ window.PF_VENDOR_SRC = {
   async function importPSP(file){const j=JSON.parse(await file.text());if(Number(j.Version)!==2||!Array.isArray(j.Clips)||!j.Clips.length)throw new Error('Unsupported Pixel Studio Project version; expected PSP v2.');const clip=j.Clips[j.ActiveClipIndex||0];const frames=clip.Frames||[];if(!frames.length)throw new Error('Pixel Studio project has no frames.');const w=Number(j.Width),h=Number(j.Height);assertSize(w,h,'Pixel Studio');assertFrames(frames.length);const firstLayers=frames[0].Layers||[];assertLayers(firstLayers.length);const layers=firstLayers.map((l,li)=>({name:l.Name||`Layer ${li+1}`,visible:!l.Hidden,opacity:Math.round(clamp(Number(l.Opacity??1),0,1)*255),cels:[]}));for(let fi=0;fi<frames.length;fi++){const fr=frames[fi];if((fr.Layers||[]).length!==layers.length)throw new Error('Pixel Studio layer count changes between frames.');for(let li=0;li<layers.length;li++){const b=findLayerPNGFromPsp(fr.Layers[li]);if(!b)throw new Error(`Pixel Studio layer ${li+1} frame ${fi+1} has no embedded source PNG.`);const img=await imageDataFromBytes(b,'image/png');if(img.width!==w||img.height!==h)throw new Error('Pixel Studio embedded PNG dimensions do not match the document.');layers[li].cels.push({frameIndex:fi,cel:u32rgbaFromImageData(img)});}}return pxCommitProject({width:w,height:h,frames:frames.map((f,i)=>({index:i,durationMs:clamp(Math.round(Number(f.Delay||0.1)*1000),20,10000)})),layers},file.name);}
   async function exportPSP(doc,name){const clips=[{Id:uid(),Name:'Clip 1',Frames:[],LayerTypes:[],ActiveFrameIndex:0}];for(let fi=0;fi<doc.durations.length;fi++){const layers=[];for(let li=0;li<doc.layers.length;li++){const data=await celToDataURL(doc.layers[li].cels[fi],doc.w,doc.h);layers.push({Id:uid(),Name:doc.layers[li].name,Opacity:doc.layers[li].opacity,Transparency:-1,Hidden:!doc.layers[li].visible,Linked:false,Outline:0,Lock:0,Sx:0,Sy:0,Scripts:[],Version:1,_source:data,_historyJson:JSON.stringify({Actions:[{Tool:20,ColorIndexes:[],Meta:JSON.stringify({Rect:{From:{X:0,Y:0},To:{X:doc.w-1,Y:doc.h-1}},Pixels:data.split('base64,')[1]}),Positions:'',Colors:'',Invalid:false,Index:1,_source:data.split('base64,')[1]}]})});}clips[0].Frames.push({Id:uid(),Delay:doc.durations[fi]/1000,Layers:layers,LayerGroups:[],ActiveLayerIndex:0});}const j={Version:2,Id:uid(),Name:name,Source:'',Width:doc.w,Height:doc.h,Type:doc.durations.length>1?1:0,Clips:clips,Background:false,BackgroundColor:{r:0,g:0,b:0,a:0},TileMode:false,TileFade:50,ActiveClipIndex:0};downloadBlob(new Blob([JSON.stringify(j)],{type:'application/json'}),name+'.psp');toast(t('toast.exported')+' Pixel Studio','ok');}
 
-  /* ----------------------------- Pyxel Edit ----------------------------- */
+
   async function importPyxel(file){const z=await unzip(new Uint8Array(await file.arrayBuffer()));const raw=z.get('docData.json');if(!raw)throw new Error('Pyxel Edit docData.json is missing.');const j=JSON.parse(textUtf8(raw));const c=j.canvas;if(!c)throw new Error('Pyxel Edit canvas metadata is missing.');const sheetW=Number(c.width),sheetH=Number(c.height),tw=Number(c.tileWidth),th=Number(c.tileHeight);assertSize(tw,th,'Pyxel tile');const animEntries=Object.values(j.animations||{});if(!animEntries.length)throw new Error('Pyxel Edit file has no animation metadata.');const anim=animEntries[0];const count=Number(anim.length)||0;assertFrames(count);const width=c.width?tw:tw,height=th;const layers=[];const layerEntries=Object.entries(c.layers||{});assertLayers(layerEntries.length);for(const [key,meta] of layerEntries){const fn='layer'+key+'.png';if(!z.has(fn))throw new Error(`Pyxel Edit ${fn} is missing.`);const img=await imageDataFromBytes(z.get(fn),'image/png',sheetW,sheetH);const cels=[];const colCount=Math.max(1,Math.floor(sheetW/tw));for(let fi=0;fi<count;fi++){const tileIndex=Number(anim.baseTile||0)+fi;const sx=(tileIndex%colCount)*tw,sy=Math.floor(tileIndex/colCount)*th;if(sx+tw>sheetW||sy+th>sheetH)throw new Error('Pyxel Edit animation references a tile outside the layer sheet.');cels.push({frameIndex:fi,cel:cropImageDataU32(img,sx,sy,tw,th)});}layers.push({name:meta.name||`Layer ${key}`,visible:!meta.hidden,opacity:Math.round(clamp(Number(meta.alpha??255)/255,0,1)*255),cels});}
     return pxCommitProject({width:tw,height:th,frames:Array.from({length:count},(_,i)=>({index:i,durationMs:clamp(Number(anim.frameDuration)||100,20,10000)})),layers},file.name);
   }
   async function exportPyxel(doc,name){const cols=Math.ceil(Math.sqrt(doc.durations.length));const rows=Math.ceil(doc.durations.length/cols);const tw=doc.w,th=doc.h,sheetW=cols*tw,sheetH=rows*th;const entries=[];const layers={};for(let li=0;li<doc.layers.length;li++){const sheetBuf=new Uint32Array(sheetW*sheetH);for(let fi=0;fi<doc.durations.length;fi++){const sx=(fi%cols)*tw,sy=Math.floor(fi/cols)*th,cel=doc.layers[li].cels[fi];for(let y=0;y<th;y++)sheetBuf.set(cel.subarray(y*tw,(y+1)*tw),(sy+y)*sheetW+sx);}entries.push([`layer${li}.png`,await pngEncodeU32(sheetBuf,sheetW,sheetH)]);layers[String(li)]={name:doc.layers[li].name,alpha:Math.round(doc.layers[li].opacity*255),hidden:!doc.layers[li].visible};}const animations={"0":{name:'Default',baseTile:0,length:doc.durations.length,frameDuration:doc.durations[0]||100,frameDurationMultipliers:doc.durations.map(()=>100)}};const j={name:name,tileset:{tileWidth:tw,tileHeight:th,tilesWide:cols,fixedWidth:true,numTiles:doc.durations.length},animations,canvas:{width:sheetW,height:sheetH,tileWidth:tw,tileHeight:th,numLayers:doc.layers.length,layers}};entries.unshift(['docData.json',bytesUtf8(JSON.stringify(j))]);downloadBlob(new Blob([zipStore(entries)],{type:'application/zip'}),name+'.pyxel');toast(t('toast.exported')+' Pyxel Edit','ok');}
 
-  /* ---------------------------- PSD / Aseprite ---------------------------- */
+
   async function importPSD(file){const mod=await loadLib('agPsd');const psd=mod.readPsd(await file.arrayBuffer(),{useImageData:true});const w=Number(psd.width),h=Number(psd.height);assertSize(w,h,'PSD');const children=Array.isArray(psd.children)?psd.children:[];if(!children.length)throw new Error('PSD contains no readable layers.');const layers=[];for(let ri=children.length-1;ri>=0;ri--){const l=children[ri];if(l.children?.length)throw new Error(`PSD layer group ${l.name||ri} is unsupported by this Fossprite subset.`);const img=l.imageData;if(!img)throw new Error(`PSD layer ${l.name||ri} has no decoded pixel data.`);const lw=Number(img.width||l.right-l.left||w),lh=Number(img.height||l.bottom-l.top||h),src=img.data||img;if(src.length!==lw*lh*4)throw new Error(`PSD layer ${l.name||ri} has unexpected RGBA byte length.`);const tmp=src instanceof Uint8ClampedArray?src:new Uint8ClampedArray(src.buffer,src.byteOffset,src.byteLength);const srcU=new Uint32Array(tmp.buffer,tmp.byteOffset,tmp.byteLength>>>2),cel=new Uint32Array(w*h),dx0=Number(l.left||0),dy0=Number(l.top||0);for(let y=0;y<lh;y++){const dy=dy0+y;if(dy<0||dy>=h)continue;const sy=y*lw;for(let x=0;x<lw;x++){const dx=dx0+x;if(dx>=0&&dx<w)cel[dy*w+dx]=srcU[sy+x]>>>0;}}layers.push({name:l.name||'Layer',visible:l.hidden!==true,opacity:Math.round(clamp(Number(l.opacity??255)/255,0,1)*255),cels:[{frameIndex:0,cel}]});}return pxCommitProject({width:w,height:h,frames:[{index:0,durationMs:100}],layers},file.name,{toast:'Imported PSD'});}
 
   async function exportPSD(doc,name){const mod=await loadLib('agPsd');const children=[];for(let li=doc.layers.length-1;li>=0;li--){const l=doc.layers[li];children.push({name:l.name,opacity:Math.round(l.opacity*255),hidden:!l.visible,left:0,top:0,right:doc.w,bottom:doc.h,imageData:imageDataFromCel(l.cels[doc.activeFrame],doc.w,doc.h)});}const buf=mod.writePsd({width:doc.w,height:doc.h,children},{generateThumbnail:true});downloadBlob(new Blob([buf],{type:'application/octet-stream'}),name+'.psd');toast((doc.durations.length>1?'Exported active frame as PSD':'Exported PSD'),'ok');}
@@ -12931,7 +12928,7 @@ window.PF_VENDOR_SRC = {
   async function exportAseprite(doc,name){const frames=[];const layerChunks=doc.layers.map(l=>aseLayerChunk(l,doc.w,doc.h));for(let fi=0;fi<doc.durations.length;fi++){const chunks=[];if(fi===0)chunks.push(...layerChunks);for(let li=0;li<doc.layers.length;li++){const cel=doc.layers[li].cels[fi];if(cel?.some(v=>v!==0))chunks.push(aseCelChunk(li,cel,doc.w,doc.h));}if(fi===0){const tags=aseTagsChunk(doc.tags||[]);if(tags)chunks.push(tags);}const body=[];const total=chunks.reduce((a,b)=>a+b.length,0);writeU32LE(body,16+total);writeU16LE(body,0xf1fa);writeU16LE(body,chunks.length);writeU16LE(body,doc.durations[fi]);body.push(0,0);writeU32LE(body,chunks.length);frames.push(concatBytes([new Uint8Array(body),...chunks]));}
     const header=[];const totalFrames=frames.reduce((a,b)=>a+b.length,0);const fileSize=128+totalFrames;writeU32LE(header,fileSize);writeU16LE(header,0xa5e0);writeU16LE(header,frames.length);writeU16LE(header,doc.w);writeU16LE(header,doc.h);writeU16LE(header,32);writeU32LE(header,0);writeU16LE(header,0);writeU32LE(header,0);writeU32LE(header,0);writeU8(header,0);header.push(0,0,0);writeU16LE(header,0);writeU8(header,1);writeU8(header,1);writeI16LE(header,0);writeI16LE(header,0);writeU16LE(header,0);writeU16LE(header,0);while(header.length<128)header.push(0);downloadBlob(new Blob([new Uint8Array(header),...frames],{type:'application/octet-stream'}),name+'.aseprite');toast(t('toast.exported')+' Aseprite','ok');}
 
-  /* ----------------------------- XCF ------------------------------------- */
+
   function xcfU32(v){const a=[];const x=(Number(v)>>>0);a.push((x>>>24)&255,(x>>>16)&255,(x>>>8)&255,x&255);return a;}
   function xcfI32(v){const n=Number(v)|0;return [(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255];}
   class XCFWriter{
@@ -12951,7 +12948,7 @@ window.PF_VENDOR_SRC = {
   function xcfPayloadOffsets(x,y){return new Uint8Array([...xcfI32(x),...xcfI32(y)]);}
   function xcfLayerProps(layer){
     const parts=[];
-    parts.push(xcfProp(7,xcfPayloadU32(0))); // Normal
+    parts.push(xcfProp(7,xcfPayloadU32(0)));
     parts.push(xcfProp(6,xcfPayloadU32(Math.round(clamp(layer.opacity??1,0,1)*255))));
     parts.push(xcfProp(8,xcfPayloadU32(layer.visible!==false?1:0)));
     parts.push(xcfProp(15,xcfPayloadOffsets(0,0)));
@@ -12968,19 +12965,19 @@ window.PF_VENDOR_SRC = {
     const levelOff=wr.tell();wr.u32(docW);wr.u32(docH);const tilePtrOffs=[];for(let ty=0;ty<tileRows;ty++)for(let tx=0;tx<tileCols;tx++){tilePtrOffs.push(wr.tell());wr.ptr(0);}wr.ptr(0);
     for(let i=0;i<tilePtrOffs.length;i++){const tx=i%tileCols,ty=Math.floor(i/tileCols);wr.patchU32(tilePtrOffs[i],wr.tell());wr.bytes(xcfTileBytes(cel,docW,docH,tx*64,ty*64));}
     wr.patchU32(levelPtrOffs[0],levelOff);wr.patchU32(hptrOff,hierarchyOff);
-    // hierarchy pointer chain: level pointer followed by terminator is already present, no dummy levels.
-    // Return location of the layer structure itself for master layer-pointer table.
+
+
     return layerStart;
   }
   function exportXCFBytes(doc){
     assertSize(doc.w,doc.h,'XCF');if(doc.layers.length>64)throw new Error('Too many layers for XCF export.');
     const wr=new XCFWriter();const layerPtrOffs=[];
-    wr.bytes(utf8Bytes('gimp xcf '));wr.bytes(utf8Bytes('v003'));wr.bytes([0]);wr.u32(doc.w);wr.u32(doc.h);wr.u32(0); // RGB
+    wr.bytes(utf8Bytes('gimp xcf '));wr.bytes(utf8Bytes('v003'));wr.bytes([0]);wr.u32(doc.w);wr.u32(doc.h);wr.u32(0);
     wr.bytes(xcfImageProps());
-    // XCF layer pointer list must be topmost first.
-    for(let i=doc.layers.length-1;i>=0;i--){layerPtrOffs.push(wr.tell());wr.ptr(0);}wr.ptr(0); // end layer list
-    wr.ptr(0); // end channel list
-    wr.ptr(0); // end path list
+
+    for(let i=doc.layers.length-1;i>=0;i--){layerPtrOffs.push(wr.tell());wr.ptr(0);}wr.ptr(0);
+    wr.ptr(0);
+    wr.ptr(0);
     const layerStarts=[];
     for(let i=doc.layers.length-1;i>=0;i--){const l=doc.layers[i];layerStarts.push(xcfLayerBlock(wr,l,doc.w,doc.h,l.cels[doc.activeFrame]||new Uint32Array(doc.w*doc.h)));}
     for(let i=0;i<layerPtrOffs.length;i++)wr.patchU32(layerPtrOffs[i],layerStarts[i]);
@@ -12995,7 +12992,7 @@ window.PF_VENDOR_SRC = {
     for(let ri=parser.layers.length-1;ri>=0;ri--){const l=parser.layers[ri];if(l.isGroup)throw new Error(`XCF group layer ${l.name||ri} is unsupported; flatten the group before import.`);const layerOpacity=clamp(Number(l.opacity??255),0,255),layerVisible=l.isVisible!==false;try{Object.defineProperty(l,'opacity',{value:255,configurable:true});Object.defineProperty(l,'isVisible',{value:true,configurable:true});Object.defineProperty(l,'mode',{value:0,configurable:true});}catch(e){}const img=new mod.XCFDataImage(l.width,l.height);await Promise.resolve(l.makeImage(img,true));const raw=img.imageData.data;const cel=new Uint32Array(parser.width*parser.height);const src=new Uint32Array(raw.buffer.slice(raw.byteOffset,raw.byteOffset+raw.byteLength));for(let y=0;y<l.height;y++)for(let x=0;x<l.width;x++){const sx=x,sy=y,dx=Math.round(l.x)+x,dy=Math.round(l.y)+y;if(dx>=0&&dy>=0&&dx<parser.width&&dy<parser.height)cel[dy*parser.width+dx]=src[sy*l.width+sx]>>>0;}layers.push({name:l.name||'Layer',visible:layerVisible,opacity:layerOpacity,cels:[{frameIndex:0,cel}]});}
     return pxCommitProject({width:parser.width,height:parser.height,frames:[{index:0,durationMs:100}],layers},file.name,{toast:'Imported XCF layers'});
   }
-  /* ----------------------------- PDN / GAL ------------------------------- */
+
   function galVersion(b){if(b.length<11||ascii(b.subarray(0,4))!=='Gale')throw new Error('Not a GraphicsGale GAL file.');const v=b[4]*100+b[5]*10+b[6]-5328;if(v<100||v>107)throw new Error(`Unsupported GAL version ${v||'unknown'}.`);return v;}
   function galReadHeader(bytes){const version=galVersion(bytes);if(version<=102)throw new Error('GAL v1.00–1.02 legacy headers are not supported; use GAL v1.03–v1.07.');const headerSize=readU32LE(bytes,7);if(headerSize<0x28||headerSize>0x100||11+headerSize>bytes.length)throw new Error('Invalid GAL header size.');const h=bytes.subarray(11,11+headerSize);if(readU32LE(h,0)!==version)throw new Error('GAL version/header mismatch.');return {version,width:readU32LE(h,4),height:readU32LE(h,8),bpp:readU32LE(h,12),frameCount:readU32LE(h,16),shuffled:h[21]!==0,compression:h[22],offset:11+headerSize};}
   function galReadLen(b,o,label){const n=readU32LE(b,o);if(n>ARCHIVE_LIMITS.maxEntryBytes||o+4+n>b.length)throw new Error(`${label} is out of bounds.`);return [b.subarray(o+4,o+4+n),o+4+n];}
@@ -13005,7 +13002,7 @@ window.PF_VENDOR_SRC = {
   function pdnFindNrbfBoundary(bytes,start,decode){const limit=Math.min(bytes.length,start+16*1024*1024);let doc;try{doc=decode(bytes.subarray(start,limit));}catch{throw new Error('Could not locate the end of the PDN NRBF stream within the safety limit.');}let lo=start+1,hi=limit,best=limit;while(lo<=hi){const mid=(lo+hi)>>1;try{decode(bytes.subarray(start,mid));best=mid;hi=mid-1;}catch{lo=mid+1;}}return {end:best,document:doc};}
   function pdnBlendModeToPF(v){const n=Number(scalar(v));return ({0:'normal',1:'multiply',2:'add',7:'overlay',10:'lighten',11:'darken',12:'screen'})[n]||'normal';}
   async function importPDN(file){const bytes=new Uint8Array(await file.arrayBuffer());if(bytes.length<9||ascii(bytes.subarray(0,4))!=='PDN3')throw new Error('Not a classic Paint.NET PDN3 file.');const headerSize=(bytes[4]|bytes[5]<<8|bytes[6]<<16)>>>0;if(headerSize>4*1024*1024||7+headerSize+2>bytes.length)throw new Error('Paint.NET header is invalid.');let p=7+headerSize;if(bytes[p]!==0||bytes[p+1]!==1)throw new Error('Paint.NET data marker is invalid.');p+=2;const mod=await loadLib('nrbf');if(typeof mod.DecodeNrbf!=='function'||typeof mod.NrbfTypeRegistry!=='function')throw new Error('NRBF browser codec was not exposed.');const PDN_INT32=()=>({type:0,primitive:8});const decode=b=>mod.DecodeNrbf(b,{maxBytes:16*1024*1024,maxObjects:300000,maxArrayLength:2000000,maxTotalArrayLength:3000000,maxStringBytes:4*1024*1024,maxMembers:50000,maxDepth:128,allowTrailingBytes:true,resolveMemberTypes:(cn,mn)=>{if(cn==='System.Version')return mn.map(PDN_INT32);if(cn==='System.TimeSpan')return mn.map(()=>({type:0,primitive:9}));throw new Error('Unsupported untyped NRBF class: '+cn);}});const found=pdnFindNrbfBoundary(bytes,p,decode),registry=new mod.NrbfTypeRegistry(),root=registry.Materialize(found.document,{allowUnknownTypes:true});const width=asSafeInt(scalar(nrField(root,'width','Width')),'PDN width'),height=asSafeInt(scalar(nrField(root,'height','Height')),'PDN height');assertSize(width,height,'Paint.NET');const layersObj=nrField(root,'layers','Layers'),items=nrField(layersObj,'ArrayList__items','_items','items')||[],size=asSafeInt(scalar(nrField(layersObj,'ArrayList__size','_size','size'))??items.length,'PDN layer count');if(size<1||size>64)throw new Error('PDN layer count exceeds Fossprite limits.');const layers=[];let cursor=found.end;const z=await loadLib('fflate');for(let li=0;li<size;li++){const bl=items[li];if(!bl)throw new Error(`PDN layer ${li+1} is missing.`);const props=nrField(bl,'Layer_properties','layerProperties','properties')||{},surface=nrField(bl,'surface','Surface')||{},scan0=nrField(surface,'scan0','Scan0')||{},lw=asSafeInt(scalar(nrField(bl,'Layer_width','width')),'PDN layer width'),lh=asSafeInt(scalar(nrField(bl,'Layer_height','height')),'PDN layer height');if(lw!==width||lh!==height)throw new Error('PDN layer dimensions differ from the document.');const stride=asSafeInt(scalar(nrField(surface,'stride','Stride')),'PDN stride'),length=asSafeInt(scalar(nrField(scan0,'length64','length','Length')),'PDN surface length');if(length<stride*height||length>stride*height+16*1024*1024)throw new Error('PDN surface length is invalid.');if(cursor+5>bytes.length)throw new Error('PDN layer raster stream is truncated.');const formatVersion=bytes[cursor++],chunkSize=readU32BE(bytes,cursor);cursor+=4;if(!chunkSize||chunkSize>16*1024*1024)throw new Error('PDN chunk size is invalid.');const chunks=Math.ceil(length/chunkSize);if(chunks>4096)throw new Error('PDN chunk count exceeds safety limits.');const data=new Uint8Array(length),seen=new Uint8Array(chunks);for(let ci=0;ci<chunks;ci++){if(cursor+8>bytes.length)throw new Error('PDN chunk header is truncated.');const no=readU32BE(bytes,cursor),ds=readU32BE(bytes,cursor+4);cursor+=8;if(no>=chunks||seen[no])throw new Error('PDN chunk index is invalid.');if(ds>16*1024*1024||cursor+ds>bytes.length)throw new Error('PDN chunk payload is out of bounds.');const raw=bytes.subarray(cursor,cursor+ds);cursor+=ds;let part=raw;if(formatVersion===0){try{part=z.gunzipSync(raw);}catch(e){throw new Error(`PDN gzip chunk decode failed: ${e?.message||e}`);}}else if(formatVersion!==1)throw new Error(`Unsupported PDN surface format version ${formatVersion}.`);const off=no*chunkSize,need=Math.min(chunkSize,length-off);if(part.length<need)throw new Error('PDN decompressed chunk is too short.');data.set(part.subarray(0,need),off);seen[no]=1;}const bpp=Math.floor(stride*8/width);if(bpp!==24&&bpp!==32)throw new Error(`Unsupported PDN layer bit depth ${bpp}.`);const cel=new Uint32Array(width*height);for(let y=0;y<height;y++){const row=y*stride;for(let x=0;x<width;x++){const q=row+x*(bpp>>3),r=data[q+2],g=data[q+1],b=data[q],a=bpp===32?data[q+3]:255;cel[y*width+x]=((a<<24)|(b<<16)|(g<<8)|r)>>>0;}}layers.push({name:String(scalar(nrField(props,'name','Name'))||`Layer ${li+1}`),visible:scalar(nrField(props,'visible','Visible'))!==false,opacity:Math.round(clamp(Number(scalar(nrField(props,'opacity','Opacity'))??255)/255,0,1)*255),blendMode:pdnBlendModeToPF(nrField(props,'blendMode','BlendMode','blendOp')),cels:[{frameIndex:0,cel}]});}return pxCommitProject({width,height,frames:[{index:0,durationMs:100}],layers},file.name,{toast:'Imported Paint.NET PDN'});}
-  /* -------- Paint.NET PDN writer: native MS-NRBF encoder (open spec, no third-party code) -------- */
+
   const PDN_LIB_NAME='PaintDotNet.Data, Version=4.21.6589.7045, Culture=neutral, PublicKeyToken=null';
   const PDN_KV_ARR='System.Collections.Generic.KeyValuePair`2[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]][]';
   const PDN_BLEND={normal:['NormalBlendOp',0],multiply:['MultiplyBlendOp',1],add:['AdditiveBlendOp',2],overlay:['OverlayBlendOp',7],lighten:['LightenBlendOp',10],darken:['DarkenBlendOp',11],screen:['ScreenBlendOp',12]};
@@ -13118,13 +13115,13 @@ window.PF_VENDOR_SRC = {
   }
 
 
-  /* ----------------------------- Sprite sheet ---------------------------- */
+
   async function exportSpriteSheetJSON(doc,name){
     const atlasW=doc.w*doc.durations.length,atlas=new Uint32Array(atlasW*doc.h);const frames=[];for(let fi=0;fi<doc.durations.length;fi++){const buf=new Uint32Array(doc.w*doc.h);compositeFrame(doc,fi,buf);for(let y=0;y<doc.h;y++)atlas.set(buf.subarray(y*doc.w,(y+1)*doc.w),y*atlasW+fi*doc.w);frames.push({filename:`${name}_f${String(fi).padStart(4,'0')}.png`,frame:{x:fi*doc.w,y:0,w:doc.w,h:doc.h},rotated:false,trimmed:false,duration:doc.durations[fi],spriteSourceSize:{x:0,y:0,w:doc.w,h:doc.h},sourceSize:{w:doc.w,h:doc.h}});}const b=new Blob([await pngEncodeU32(atlas,atlasW,doc.h)],{type:'image/png'});downloadBlob(b,name+'.png');const meta={frames:Object.fromEntries(frames.map((f,i)=>[`${name}_f${String(i).padStart(4,'0')}.png`,f])),meta:{app:'Fossprite',version:PF.VERSION,image:name+'.png',format:'RGBA8888',size:{w:atlasW,h:doc.h},scale:'1'}};downloadBlob(new Blob([JSON.stringify(meta,null,2)],{type:'application/json'}),name+'.json');toast(t('toast.exported')+' sprite sheet + JSON','ok');}
   async function importSpriteSheetPair(files){const png=files.find(f=>/\.png$/i.test(f.name)),jf=files.find(f=>/\.json$/i.test(f.name));if(!png||!jf)throw new Error('Sprite sheet import requires a PNG and JSON metadata file.');let meta;try{meta=JSON.parse(await jf.text());}catch{throw new Error('Invalid sprite-sheet JSON metadata.');}const fs=getAsepriteFrameMeta(meta);if(!fs.length)throw new Error('Unsupported sprite-sheet JSON metadata.');assertFrames(fs.length);const img=await imageDataFromBytes(new Uint8Array(await png.arrayBuffer()),'image/png');const w=fs[0].w,h=fs[0].h;if(fs.some(f=>f.rotated))throw new Error('Rotated sprite-sheet frames are not supported.');if(fs.some(f=>f.trimmed))throw new Error('Trimmed sprite-sheet frames are not supported.');const cels=[];for(let i=0;i<fs.length;i++){const f=fs[i];if(f.w!==w||f.h!==h||f.x<0||f.y<0||f.x+f.w>img.width||f.y+f.h>img.height)throw new Error(`Sprite-sheet frame ${i+1} is outside the PNG bounds or has a different size.`);cels.push({frameIndex:i,cel:cropImageDataU32(img,f.x,f.y,f.w,f.h)});}return pxCommitProject({width:w,height:h,frames:fs.map((f,i)=>({index:i,durationMs:clamp(Number(f.duration)||100,20,10000)})),layers:[{name:safeBaseName(jf.name),visible:true,opacity:255,cels}]},png.name,{toast:'Imported sprite sheet + JSON'});}
 
 
-  /* ---------------------------- Universal dispatcher --------------------- */
+
   PX.importFiles = async function(filesLike){
     const files=[...filesLike].filter(Boolean);if(!files.length)return false;
     const primary=files.find(f=>{const fm=fmtByExt(f.name);return fm&&fm.id!=='sheet';})||files[0];
@@ -13194,7 +13191,7 @@ window.PF_VENDOR_SRC = {
   const hub={mode:'import'};
   function openHub(mode){ensureHub();hub.mode=mode;const v=el('dlgFormatHub');v.classList.add('open');v.querySelector('#pxHubTabs button[data-mode="'+mode+'"]').click();el('pxImportFiles').value='';v.querySelector('#pxDropTitle').textContent='Choose files…';v.querySelector('#pxDropSub').textContent='or drag & drop them here';}
 
-  /* Hook existing menu/keyboard/project entry points into the new hub. */
+
   const oldDispatch=PF.dispatch;PF.dispatch=function(act){if(act==='fmtHub'||act==='importDlg'||act==='openProject'){openHub('import');return;}if(act==='exportDlg'){openHub('export');return;}return oldDispatch(act);};
   const oldPickProjectFile=pickProjectFile;pickProjectFile=function(){openHub('import');};window.pickProjectFile=pickProjectFile;
   const oldOpenExport=openExport;openExport=function(){openHub('export');};window.openExport=openExport;
@@ -13202,9 +13199,9 @@ window.PF_VENDOR_SRC = {
   const oldOpenImageForImport=openImageForImport;openImageForImport=function(file){if(file && fmtByExt(file.name) && !/^image\//i.test(file.type)){PX.importFiles([file]).catch(e=>toast(e?.message||String(e),'error'));return;}return oldOpenImageForImport(file);};window.openImageForImport=openImageForImport;
   if(typeof wrap!=='undefined'&&wrap?.addEventListener){wrap.addEventListener('drop',e=>{const fs=[...(e.dataTransfer?.files||[])];if(!fs.length)return;const any=fs.some(f=>fmtByExt(f.name));if(!any)return;e.preventDefault();e.stopImmediatePropagation();PX.importFiles(fs).catch(err=>toast(err?.message||String(err),'error'));},true);}
 
-  /* Upgrade the core project serializer to lossless PNG data-URLs. The core
-     versions route through canvas, which premultiplies alpha and corrupts the
-     RGB of semi-transparent pixels in autosaves/snapshots/project files. */
+
+
+
   const coreDataURLToCel = window.dataURLToCel;
   window.celToDataURL = function(doc, cel){
     const bytes = pngEncodeU32Sync(cel, doc.w, doc.h);
@@ -13218,13 +13215,13 @@ window.PF_VENDOR_SRC = {
         const native=await pngDecodeU32(pngDataURLToBytes(dataURL));
         if(native&&native.w===w&&native.h===h)return native.px;
       }
-    }catch(e){/* fall through to the browser decoder */}
+    }catch(e){ }
     return coreDataURLToCel(dataURL,w,h);
   };
 
-  /* Bridge for the legacy dialogs (sprite slicer / image converter) so every
-     import path can share the same lossless native PNG codec instead of going
-     through premultiplied canvas reads. */
+
+
+
   window.PF_PNG = { encode:pngEncodeU32, encodeSync:pngEncodeU32Sync, decode:pngDecodeU32, dataURLToBytes:pngDataURLToBytes, crop:cropImageDataU32 };
 
   PX.getFormatReport=function(){return FORMATS.map(f=>({id:f.id,name:f.name,extensions:f.ext.slice(),import:f.io.includes('r'),export:f.io.includes('w'),scope:f.scope,note:f.note}));};
@@ -13237,7 +13234,7 @@ window.PF_VENDOR_SRC = {
   ];};
   PX.runFormatStaticSelfTest=function(){const checks=FORMATS.map(f=>({id:f.id,import:f.io.includes('r'),export:f.io.includes('w'),registry:true}));checks.push({id:'archive-path-safety',ok:safeArchivePath('data/layer.png')&&!safeArchivePath('../evil')&&!safeArchivePath('/abs')&&!safeArchivePath('C:/abs')});checks.push({id:'dimension-safety',ok:(()=>{try{assertSize(32,32,'selftest');return true;}catch{return false;}})()});return {ok:checks.every(c=>c.registry!==false&&c.ok!==false),checks};};
 
-  /* Keep the existing File menu semantics while replacing the old dialogs. */
+
   window.openPXFormatHub=()=>openHub('import');
   window.PX_FORMAT_REGISTRY=FORMATS;
 })();
