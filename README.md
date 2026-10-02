@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./Fossprite%20logo.png" alt="Fossprite logo" width="112">
+  <sub><img src="./Fossprite%20logo.png" alt="Fossprite logo" width="112"></sub>
   <img src="./Fossprite.png" alt="Fossprite wordmark" width="320" align="middle">
 </p>
 
