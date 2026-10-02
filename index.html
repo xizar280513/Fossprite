@@ -3124,8 +3124,7 @@ function bindToolOptions() {
   markQuick();
   PF._markQuick = markQuick;
   bindSeg('brushShapeSeg', v => PF.tool.brushShape = v, () => PF.tool.brushShape);
-  bindSeg('algoSeg', v => { PF.tool.freehandAlgo = v; el('traceRow').style.opacity = v === 'dots' ? 1 : .45; }, () => PF.tool.freehandAlgo);
-  el('traceRow').style.opacity = PF.tool.freehandAlgo === 'dots' ? 1 : .45;
+  bindSeg('algoSeg', v => PF.tool.freehandAlgo = v, () => PF.tool.freehandAlgo);
   bindSeg('traceSeg', v => PF.tool.tracePolicy = v, () => PF.tool.tracePolicy);
   const st = el('stabilizer');
   st.addEventListener('input', () => { PF.tool.stabilizer = +st.value; el('stabilizerVal').textContent = st.value; });
