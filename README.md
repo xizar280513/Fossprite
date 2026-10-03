@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/xizar280513/Fossprite/main/Fossprite%20logo.png" alt="Fossprite logo" width="112" align="middle">
+  <img src="https://raw.githubusercontent.com/xizar280513/Fossprite/356bde1b4fdb3c770fea0a8fb9853301ac98ef85/Fossprite%20logo.png" alt="Fossprite logo" width="112" align="middle">
   <img src="https://raw.githubusercontent.com/xizar280513/Fossprite/main/Fossprite.png" alt="Fossprite wordmark" width="320" align="middle">
 </p>
 
