@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Fossprite FO key mark">
-  <g fill="#3478F6">
-    <rect x="456" y="112" width="112" height="468" rx="24"/>
-    <rect x="456" y="112" width="304" height="104" rx="52"/>
-    <rect x="456" y="332" width="250" height="104" rx="52"/>
-  </g>
-  <path fill="#3478F6" fill-rule="evenodd" d="M512 555 A205 205 0 1 1 512 965 A205 205 0 1 1 512 555 Z M512 655 A105 105 0 1 0 512 865 A105 105 0 1 0 512 655 Z"/>
-</svg>
