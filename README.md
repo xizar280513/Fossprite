@@ -1,7 +1,6 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/xizar280513/Fossprite/main/Fossprite%20logo.png" alt="Fossprite logo" width="112" align="middle">
-  <!-- Cache-buster keeps the README fetching the replacement while retaining the Fossprite.png filename. -->
-  <img src="https://raw.githubusercontent.com/xizar280513/Fossprite/main/Fossprite.png?v=20261003" alt="Fossprite wordmark" width="320" align="middle">
+  <img src="https://raw.githubusercontent.com/xizar280513/Fossprite/main/Fossprite.png" alt="Fossprite wordmark" width="320" align="middle">
 </p>
 
 # Fossprite
